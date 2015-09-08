@@ -26,17 +26,21 @@
 \lstset{showstringspaces=false}
 \lstset{showtabs=false}
 \lstset{breaklines}
+
+\title{Project 1, FYS-3150}
+\author{Ina K. B. Kullmann}
+\date{\today}
 \begin{document}
 
+\maketitle
 
-\section*{Project 1, deadline Monday 14 September 12pm (noon)}
+
+\section{Introduction}
 
 The aim of this project is to get familiar with various vector and matrix operations,
-from dynamic memory allocation to the usage of programs in the library
-package of the course. 
-For Fortran users memory handling and most matrix and vector operations
-are included in the ANSI standard of Fortran 90/95. Array handling in Python is also rather trivial. For C++ user however,
-there are several possible options. Two are listed here.
+from dynamic memory allocation to the usage of programs in the library package of the course. 
+
+For C++ user however, there are several possible options. Two are listed here:
 \begin{enumerate}
 \item For this exercise we recommend that you make your own functions for dynamic memory allocation of a 
 vector and a matrix. You don't need to write a class for this operations. 
@@ -47,16 +51,13 @@ etc.
 \item A very good and often recommended library for C++ handling of arrays is the library Armadillo, to be found at \url{arma.sourceforge.net}.  We will discuss the usage of this library during the lab sessions and lectures. Armadillo has also an interface to Lapack functions for solving systems of linear equations.
 \end{enumerate}
 
-Your program, whether it is written in C++, Python 
-or Fortran2008, should include
-dynamic memory handling of matrices and vectors. 
+Your program should include dynamic memory handling of matrices and vectors. 
 
 The material needed for this project is covered by chapter 6 of the lecture notes, in particular section 6.4 and subsequent sections.
 
+\section{Theory}
 
-
-Many important differential equations in the Sciences can be written as 
-linear second-order differential equations 
+Many important differential equations in the Sciences can be written as linear second-order differential equations 
 \[
 \frac{d^2y}{dx^2}+k^2(x)y = f(x),
 \]
@@ -108,6 +109,7 @@ derivative of $u$ with
    -\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=1,\dots, n,
 \]
 where $f_i=f(x_i)$.
+
 Show that you can rewrite this equation as a linear set of equations of the form 
 \[
    {\bf A}{\bf v} = \tilde{{\bf b}},
@@ -252,7 +254,10 @@ END PROGRAM time
 
 \end{enumerate}
 
-\section*{README before delivery}
+-----------------------------------------------
+
+\newpage
+\section*{ README before delivery:}
 
 \section*{Introduction to numerical projects}
 
