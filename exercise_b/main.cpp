@@ -17,7 +17,8 @@ int main()
     const int n = 10;
     const double h = 1./(n+1);
 
-    //creating vectors a, b, c:
+    /*creating vectors a, b, c of same length as x, so one extra
+     * value on beginning/end of array*/
     vec a = -1.*ones<vec>(n+2);
     vec b = 2.*ones<vec>(n+2);
     vec c = -1.*ones<vec>(n+2);
@@ -31,19 +32,30 @@ int main()
     vec b_thilde = h*h*f(x);
 
     //cout << b << endl;
-    cout << b_thilde << endl;
+    //cout << b_thilde << endl;
 
-    //algorithm: a[i]*v[i-1] + b[i]*v[i] + c[i]*v[i+1] = h*h*f(x[i])
-    for(int i = 2; i < n+1; ++i)
+    //forward substitution:
+    for(int i = 2; i < n+1; ++i) //starting from second row till last
     {
         b[i] = b[i] - (a[i]*c[i-1])/b[i-1]; //b' one iteration
-        //cout << i << endl;
         b_thilde[i] = b_thilde[i] - (a[i]*b_thilde[i-1])/b[i-1];
     }
 
     //cout << b << endl;
     cout << b_thilde << endl;
 
+    //backward substitution:
+    for(int i = n; i > 1; --i) //starting from last row n to i==1
+    {
+        //dividing by b[i-1] after backward sust. to find final sol.:
+        b_thilde[i-1] = b_thilde[i-1] - (c[i-1]*b_thilde[i])/b[i];
+    }
+
+    vec solution = b_thilde/b;
+    cout << solution << endl;
+
+    //cout << b_thilde << endl;
+    //cout << b << endl;
 
     return 0;
 }
