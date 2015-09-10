@@ -11,16 +11,36 @@ int main()
 {
     const int n = 10;
     const double h = 1./(n+1);
-    vec a =
 
     //creating vectors a, b, c:
-    for(int Index = 0; Index < n; ++Index)
+    vec a = -1.*ones<vec>(n);
+    vec b = 2.*ones<vec>(n);
+    vec c = -1.*ones<vec>(n);
+
+    a[0] = 0;
+    a[n-1] = 0;
+    c[0] = 0;
+    c[n-1] = 0;
+
+    /*
+    cout << a << endl;
+    cout << b << endl;
+    cout << c << endl;*/
+
+    //creating vector v
+    vec v = zeros<vec>(n);
+
+    //and x?
+    vec x = linspace<vec>(0, 1, n+1);
+
+    cout << x << endl;
+
+    /*for(int i = 0; i < n; ++i)
     {
-
+        //algorithm
     }
+*/
 
-
-    //vec x = randu<vec>(5);
 
     return 0;
 }
