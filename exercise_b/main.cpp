@@ -18,30 +18,31 @@ int main()
     const double h = 1./(n+1);
 
     //creating vectors a, b, c:
-    vec a = -1.*ones<vec>(n);
-    vec b = 2.*ones<vec>(n);
-    vec c = -1.*ones<vec>(n);
+    vec a = -1.*ones<vec>(n+2);
+    vec b = 2.*ones<vec>(n+2);
+    vec c = -1.*ones<vec>(n+2);
 
-    a[0] = 0;
-    a[n-1] = 0;
-    c[0] = 0;
-    c[n-1] = 0;
+    a[1] = 0;
+    c[n] = 0;
 
     //creating vector v and x and b_thilde
-    vec v = zeros<vec>(n);
+    vec v = zeros<vec>(n+2);
     vec x = linspace<vec>(0, 1, n+2);
     vec b_thilde = h*h*f(x);
 
+    //cout << b << endl;
     cout << b_thilde << endl;
-/*
+
     //algorithm: a[i]*v[i-1] + b[i]*v[i] + c[i]*v[i+1] = h*h*f(x[i])
-    for(int i = 1; i < n; ++i)
+    for(int i = 2; i < n+1; ++i)
     {
         b[i] = b[i] - (a[i]*c[i-1])/b[i-1]; //b' one iteration
+        //cout << i << endl;
         b_thilde[i] = b_thilde[i] - (a[i]*b_thilde[i-1])/b[i-1];
-
     }
-*/
+
+    //cout << b << endl;
+    cout << b_thilde << endl;
 
 
     return 0;
