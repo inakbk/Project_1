@@ -1,5 +1,5 @@
 //Exercise b, algorithm for solving the set of linear equations
-//a_i*v_(i-1) + b_i*v_i + c_i*v_(i+1) = tilde_b_i
+//a_i*v_(i-1) + b_i*v_i + c_i*v_(i+1) = h*h*f(x_i)
 
 #include <iostream>
 #include <armadillo>
@@ -7,7 +7,7 @@
 using namespace std;
 using namespace arma;
 
-double f(double x) //call by f(x)
+vec f(vec x) //call by f(x[i])
 {
     return 100.*exp(-10.*x);
 }
@@ -27,22 +27,19 @@ int main()
     c[0] = 0;
     c[n-1] = 0;
 
-    /*
-    cout << a << endl;
-    cout << b << endl;
-    cout << c << endl;*/
-
-    //creating vector v
+    //creating vector v and x and b_thilde
     vec v = zeros<vec>(n);
-
-    //and x?
     vec x = linspace<vec>(0, 1, n+2);
+    vec b_thilde = h*h*f(x);
 
-    cout << x[1] << " " << h << endl;
-
-    /*for(int i = 0; i < n; ++i)
+    cout << b_thilde << endl;
+/*
+    //algorithm: a[i]*v[i-1] + b[i]*v[i] + c[i]*v[i+1] = h*h*f(x[i])
+    for(int i = 1; i < n; ++i)
     {
-        //algorithm
+        b[i] = b[i] - (a[i]*c[i-1])/b[i-1]; //b' one iteration
+        b_thilde[i] = b_thilde[i] - (a[i]*b_thilde[i-1])/b[i-1];
+
     }
 */
 
