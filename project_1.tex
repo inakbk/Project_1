@@ -110,6 +110,9 @@ derivative of $u$ with
 \]
 where $f_i=f(x_i)$.
 
+\rule{\textwidth}{1pt}
+\textbf{Exercise:}
+
 Show that you can rewrite this equation as a linear set of equations of the form 
 \[
    {\bf A}{\bf v} = \tilde{{\bf b}},
@@ -128,6 +131,51 @@ where ${\bf A}$ is an $n\times n$  tridiagonal matrix which we rewrite as
 and $\tilde{b}_i=h^2f_i$.
 
 
+\textbf{Solution:}
+
+\[
+   -\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \\
+   \Rightarrow -v_{i+1}-v_{i-1}+2v_i = h^2f_i
+\]
+
+\begin{equation}
+{\bf A}{\bf v} = \left(\begin{array}{cccccc}
+                           2& -1& 0 &\dots   & \dots &0 \\
+                           -1 & 2 & -1 &0 &\dots &\dots \\
+                           0&-1 &2 & -1 & 0 & \dots \\
+                           & \dots   & \dots &\dots   &\dots & \dots \\
+                           0&\dots   &  &-1 &2& -1 \\
+                           0&\dots    &  & 0  &-1 & 2 \\
+                      \end{array} \right)
+                      \left(\begin{array}{c}
+                           v_1 \\
+                           v_{2}\\
+                           v_{3}\\
+                           \dots \\
+                           v_{n-1}\\
+                           v_n\\
+                      \end{array} \right) = 
+                       \left(\begin{array}{c}
+                           h^2f_1 \\
+                           h^2f_{2}\\
+                           h^2f_{3}\\
+                           \dots \\
+                           h^2f_{n-1}\\
+                           h^2f_n\\
+                      \end{array} \right) = 
+                      \left(\begin{array}{c}
+                           \tilde{b}_1 \\
+                           \tilde{b}_2\\
+                           \tilde{b}_3\\
+                           \dots \\
+                           \tilde{b}_{n-1}\\
+                           \tilde{b}_n\\
+                      \end{array} \right) =
+                      \tilde{{\bf b}}
+\end{equation}
+
+\rule{\textwidth}{1pt}
+\textbf{Assume/Analytical solution:}\\
 In our case we will assume  that the source term is 
 $f(x) = 100e^{-10x}$, and keep the same interval and boundary 
 conditions. Then the above differential equation
@@ -175,6 +223,8 @@ The algorithm for solving this set of equations is rather simple and requires tw
 and forward substitution and finally a backward substitution. 
 
 
+\rule{\textwidth}{1pt}
+\textbf{Exercise:}\\
 Your first task is to set up the algorithm for solving this set of linear equations.
 Find also the precise number of floating point 
 operations needed to solve the above equations. 
@@ -187,6 +237,7 @@ $n=1000$ grid points.
 Compare your results (make plots) with the closed-form solution for the different number of grid points  in the 
 interval $x\in(0,1)$.  The different number of grid points corresponds to different step lengths $h$.
 
+\rule{\textwidth}{1pt}
 \item[(c)]
 
 Compute the relative error  in the data set $i=1,\dots, n$,by setting up 
