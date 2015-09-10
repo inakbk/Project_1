@@ -7,6 +7,11 @@
 using namespace std;
 using namespace arma;
 
+double f(double x) //call by f(x)
+{
+    return 100.*exp(-10.*x);
+}
+
 int main()
 {
     const int n = 10;
@@ -31,9 +36,9 @@ int main()
     vec v = zeros<vec>(n);
 
     //and x?
-    vec x = linspace<vec>(0, 1, n+1);
+    vec x = linspace<vec>(0, 1, n+2);
 
-    cout << x << endl;
+    cout << x[1] << " " << h << endl;
 
     /*for(int i = 0; i < n; ++i)
     {
