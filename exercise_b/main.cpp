@@ -14,15 +14,15 @@ vec f(vec x) //call by f(x[i])
     return 100.*exp(-10.*x);
 }
 
-void MakePlotFile(const vec x, const vec solution, int n)
+void MakePlotFile(const vec x, const vec solution, const int n)
 {
-    ofstream myfile;
-        string filename = "solver" + to_string(n);
-
-        myfile.open ("solver_n.txt");
-        myfile << "x" << "     " << "solution (u/v)" << endl;
-        for (i=0; i<=n+1; i++){
-            myfile << x_mat(i) << "    " << x2(i) << endl;
+    ofstream myfile; //function to make file to plot with
+        string filename = "linear_eq_solution_n" + to_string(n) + ".txt";
+        myfile.open (filename);
+        myfile << "x" << "     " << "Solution" << "Index" << endl;
+        for (int i=1; i<n+1; i++)
+        {
+            myfile << x[i] << "    " << solution[i] << i << endl;
         }
         myfile.close();
 }
@@ -46,9 +46,6 @@ int main()
     vec x = linspace<vec>(0, 1, n+2);
     vec b_thilde = h*h*f(x);
 
-    //cout << b << endl;
-    //cout << b_thilde << endl;
-
     //forward substitution:
     for(int i = 2; i < n+1; ++i) //starting from second row till last
     {
@@ -56,23 +53,16 @@ int main()
         b_thilde[i] = b_thilde[i] - (a[i]*b_thilde[i-1])/b[i-1];
     }
 
-    //cout << b << endl;
-    //cout << b_thilde << endl;
-
     //backward substitution:
     for(int i = n; i > 1; --i) //starting from last row n to i==1
     {
-        //dividing by b[i-1] after backward sust. to find final sol.:
         b_thilde[i-1] = b_thilde[i-1] - (c[i-1]*b_thilde[i])/b[i];
     }
 
-    //Final solution:
+    /*Final solution, dividing by b[i-1] after backward sust. to
+     *  find final solution v */
     vec v = b_thilde/b;
-
-    cout << solution << endl;
-    //cout << b_thilde << endl;
-    //cout << b << endl;
-
+    MakePlotFile(x, v, n); //making plot file in built folder
 
     return 0;
 }
