@@ -31,32 +31,37 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-n = 10
+N = [10, 100, 1000]
 
-"""
-Run c++ code from here with n as command line argument:
-"""
-os.system('c++ -o main main.cpp')
-os.system('./main %s' %n)
+i = 1
+for n in N:
+	"""
+	Run c++ code from here with n as command line argument:
+	"""
+	os.system('c++ -o main main.cpp')
+	os.system('./main %s' %n)
 
-"""
-Fetching file from c++ code
-"""
-filename = 'linear_eq_solution_n%s.txt' %n
+	"""
+	Fetching file from c++ code
+	"""
+	filename = 'linear_eq_solution_n%s.txt' %n
 
-x, v = read_file(filename)
+	x, v = read_file(filename)
 
+	figure(i)
+	plot(x,v, 'b')
+	hold('on')
+	plot(x,u(x), 'r')
+	legend(['Numerical', 'Analytic'], loc='lower left')
+	xlabel('x')
+	ylabel('Solution')
+	title('Plot of analytic and numerical solution with n=%s' %n) 
+	savefig('linear_eq_solution_plot_n%s.eps' %n)
+	hold('off')
 
-plot(x,v, 'b')
-hold('on')
-plot(x,u(x), 'r')
-legend(['Numerical', 'Analytic'], loc='lower left')
-xlabel('x')
-ylabel('Solution')
-title('Plot of analytic and numerical solution with n=%s' %n) 
-savefig('linear_eq_solution_plot_n%s.eps' %n)
+	i += 1
 
-show()
+	#show()
 
 
 
