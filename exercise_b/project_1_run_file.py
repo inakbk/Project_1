@@ -2,6 +2,7 @@
 #File to run the c++ code and plot the data for different n
 
 from pylab import *
+import os as os
 
 #leser filen, lager arrays med dataen:
 def read_file(filename):
@@ -28,28 +29,32 @@ def u(x):
 n = 10
 
 """
-import os as os
+
 
 Run c++ code from here:
-
-os.system("do something on terminal")
 """
+os.system('c++ -o main main.cpp')
+os.system('./main')
+
 
 
 
 """
 Fetching file from c++ code in built folder
 """
-filename = '/Users/Ina/build/build-exercise_b-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_n%s.txt' %n
+
+filename = 'linear_eq_solution_n%s.txt' %n
 
 x, v = read_file(filename)
 
 plot(x,v, 'b')
 hold('on')
 plot(x,u(x), 'r')
+legend(['Numerical', 'Analytic'], loc='lower left')
 xlabel('x')
 ylabel('Solution')
-title('Plot of analytic (red) and numerical solution (blue) with n=%s' %n) 
+title('Plot of analytic and numerical solution with n=%s' %n) 
+
 show()
 
 
