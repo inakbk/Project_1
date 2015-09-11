@@ -4,6 +4,7 @@
 #include <iostream>
 #include <armadillo>
 #include <cstdlib>
+#include <time.h>
 //#include <stdio.h> printf function
 
 using namespace std;
@@ -15,12 +16,13 @@ vec f(vec x) //call by f(x[i])
 }
 
 //Function to make file to plot with in python
-void MakePlotFile(const vec x, const vec solution, const int n)
+void MakePlotFile(const vec x, const vec solution, const int n, const double time_diag)
 {
     ofstream myfile;
         string filename = "linear_eq_solution_n" + to_string(n) + ".txt";
         myfile.open (filename);
         myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
+        myfile << "Time calculating: " << time_diag << " seconds" << endl;
         myfile << "---------------------" << endl;
         for (int i=1; i<n+1; i++)
         {
@@ -29,7 +31,7 @@ void MakePlotFile(const vec x, const vec solution, const int n)
         myfile.close();
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *argv[])
 {
     if(argc == 1)
     {
@@ -55,6 +57,10 @@ int main(int argc, char *argv[])
         vec x = linspace<vec>(0, 1, n+2);
         vec b_thilde = h*h*f(x);
 
+        //clocking the operations (only solve, not making file):
+        clock_t start_diag, finish_diag; //declaring start and finish time
+        start = clock()
+
         //forward substitution:
         for(int i = 2; i < n+1; ++i) //starting from second row till last
         {
@@ -71,9 +77,14 @@ int main(int argc, char *argv[])
         /*Final solution, dividing by b[i-1] after backward sust. to
          *  find final solution v */
         vec v = b_thilde/b;
-        MakePlotFile(x, v, n); //making plot file in built folder
+        finish_diag = clock();
+        double time_diag = ( (finish_diag - start_diag)/CLOCKS_PER_SEC );
+        cout << "Time for n=" << n << " :  " << time_diag << endl;
 
-        cout << "Datafile done" << endl;
+        MakePlotFile(x, v, n, time_diag); //making plot file in built folder
+
+        cout << "Datafile done for n=" << n << endl;
+
     }
 
     return 0;

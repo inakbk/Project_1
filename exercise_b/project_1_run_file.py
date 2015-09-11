@@ -41,7 +41,7 @@ for n in N:
 	Run c++ code from here with n as command line argument:
 	"""
 	os.system('c++ -o main main.cpp')
-	os.system('./main %s %s' %(n,len(N)) )
+	os.system('./main %s' %n)
 
 	"""
 	Fetching file from c++ code
