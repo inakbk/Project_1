@@ -1,5 +1,5 @@
 Data:  x     Solution
-Time calculating: 5e-06 seconds
+Time calculating: 4e-06 seconds
 ---------------------
 0.0909091    0.472737
 0.181818    0.612506
