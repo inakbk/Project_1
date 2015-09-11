@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <armadillo>
+#include <cstdlib>
+//#include <stdio.h>
 
 using namespace std;
 using namespace arma;
@@ -10,6 +12,19 @@ using namespace arma;
 vec f(vec x) //call by f(x[i])
 {
     return 100.*exp(-10.*x);
+}
+
+void MakePlotFile(const vec x, const vec solution, int n)
+{
+    ofstream myfile;
+        string filename = "solver" + to_string(n);
+
+        myfile.open ("solver_n.txt");
+        myfile << "x" << "     " << "solution (u/v)" << endl;
+        for (i=0; i<=n+1; i++){
+            myfile << x_mat(i) << "    " << x2(i) << endl;
+        }
+        myfile.close();
 }
 
 int main()
@@ -23,11 +38,11 @@ int main()
     vec b = 2.*ones<vec>(n+2);
     vec c = -1.*ones<vec>(n+2);
 
+    //outside range of matrix
     a[1] = 0;
     c[n] = 0;
 
-    //creating vector v and x and b_thilde
-    vec v = zeros<vec>(n+2);
+    //creating vector x and b_thilde
     vec x = linspace<vec>(0, 1, n+2);
     vec b_thilde = h*h*f(x);
 
@@ -42,7 +57,7 @@ int main()
     }
 
     //cout << b << endl;
-    cout << b_thilde << endl;
+    //cout << b_thilde << endl;
 
     //backward substitution:
     for(int i = n; i > 1; --i) //starting from last row n to i==1
@@ -51,11 +66,13 @@ int main()
         b_thilde[i-1] = b_thilde[i-1] - (c[i-1]*b_thilde[i])/b[i];
     }
 
-    vec solution = b_thilde/b;
-    cout << solution << endl;
+    //Final solution:
+    vec v = b_thilde/b;
 
+    cout << solution << endl;
     //cout << b_thilde << endl;
     //cout << b << endl;
+
 
     return 0;
 }
