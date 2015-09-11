@@ -1,9 +1,12 @@
-#Project 1
-#File to run the c++ code and plot the data for different n
-
+"""
+Project 1
+File to run the c++ code and plot the data for different n
+"""
 from pylab import *
 import os as os
-
+"""
+------------------------------------------------------------------------------------------
+"""
 #leser filen, lager arrays med dataen:
 def read_file(filename):
     infile = open(filename, "r")
@@ -24,28 +27,25 @@ def u(x):
 	analytic_solution = 1 - (1 - exp(-10))*x - exp(-10*x)
 	return analytic_solution
 
-
+"""
+------------------------------------------------------------------------------------------
+"""
 
 n = 10
 
 """
-
-
-Run c++ code from here:
+Run c++ code from here with n as command line argument:
 """
 os.system('c++ -o main main.cpp')
-os.system('./main')
-
-
-
+os.system('./main %s' %n)
 
 """
-Fetching file from c++ code in built folder
+Fetching file from c++ code
 """
-
 filename = 'linear_eq_solution_n%s.txt' %n
 
 x, v = read_file(filename)
+
 
 plot(x,v, 'b')
 hold('on')
