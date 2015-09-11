@@ -31,7 +31,8 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-N = [10]#, 100, 1000]
+N = [10, 100, 1000]
+h = zeros(len(N))
 relative_error = zeros(len(N))
 i = 1
 
@@ -60,8 +61,6 @@ for n in N:
 	savefig('linear_eq_solution_plot_n%s.eps' %n)
 	hold('off')
 
-	
-
 	#show()
 	"""
 	------------------------------------------------------------------------------------------
@@ -70,11 +69,18 @@ for n in N:
 
 	relative_error[i-1] = mean(log(abs((v - u(x))/u(x)))) #extraxting rel. error for each n
 #	print relative_error[i-1]
+	"""
+	#error for one n:
+	figure(12)
+	rel_err = log(abs((v - u(x))/u(x)))
+	plot(x,rel_err)
+	#show()
+	"""
+
+	h[i-1] = 1./(n+1)
 	i += 1
 
-h = 1./(n+1)
-
-figure(0)
+figure(12)
 plot(log(h), relative_error)
 legend(['Relative error'], loc='lower left')
 xlabel('$log_{10}(h)$', fontsize=18)
@@ -82,9 +88,8 @@ ylabel('Relative error', fontsize=18)
 title('Plot of relative error with n=%s' %N) 
 savefig('linear_eq_error_plot_N.eps')
 
-show
 
-
+show()
 
 
 
