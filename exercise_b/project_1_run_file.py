@@ -41,7 +41,7 @@ for n in N:
 	Run c++ code from here with n as command line argument:
 	"""
 	os.system('c++ -o main main.cpp')
-	os.system('./main %s' %n)
+	os.system('./main %s %s' %(n,len(N)) )
 
 	"""
 	Fetching file from c++ code
@@ -86,7 +86,7 @@ legend(['Relative error'], loc='lower left')
 xlabel('$log_{10}(h)$', fontsize=18)
 ylabel('Relative error', fontsize=18)
 title('Plot of relative error with n=%s' %N) 
-savefig('linear_eq_error_plot_N.eps')
+savefig('linear_eq_error_plot_N%s.eps' %N[-1])
 
 
 show()
