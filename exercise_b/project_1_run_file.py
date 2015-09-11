@@ -54,6 +54,7 @@ legend(['Numerical', 'Analytic'], loc='lower left')
 xlabel('x')
 ylabel('Solution')
 title('Plot of analytic and numerical solution with n=%s' %n) 
+savefig('linear_eq_solution_plot_n%s.eps' %n)
 
 show()
 
