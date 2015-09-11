@@ -31,7 +31,7 @@ void MakePlotFile(const vec x, const vec solution, const int n)
 
 int main(int argc, char *argv[])
 {
-    if(arg == 1)
+    if(argc == 1)
     {
         cout << "No arguments. Give 'n' on command line. Eks n=10: 10" << endl;
         exit(1);
@@ -73,8 +73,8 @@ int main(int argc, char *argv[])
         vec v = b_thilde/b;
         MakePlotFile(x, v, n); //making plot file in built folder
 
+        cout << "Datafile done" << endl;
     }
-
 
     return 0;
 }
