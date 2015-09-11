@@ -1,6 +1,7 @@
 #Project 1
 #File to run the c++ code from 
 
+from pylab import *
 
 """
 import os as os
@@ -24,19 +25,22 @@ def read_file(filename):
     v = []
     
     for line in infile_:
-	if len(line.split()) == 3:
-                x.append(float(line.split()[0]))
-                v.append(float(line.split()[1]))
+		if len(line.split()) == 2:
+			x.append(float(line.split()[0]))
+			v.append(float(line.split()[1]))
     infile.close()
 
     return array(x), array(v)
 
 
 n = 10
-filename = "~Users/Ina/build/build-exercise_b-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_n%s.txt" %n
+#filename = "Users/Ina/build/build-exercise_b-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_n%s.txt" %n
+filename = "linear_eq_solution_n%s.txt" %n
 
 x, y = read_file(filename)
 
 print x
-print "-----"
+print "------"
 print y
+plot(x,y)
+#show()
