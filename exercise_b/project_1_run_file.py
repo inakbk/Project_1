@@ -1,23 +1,10 @@
 #Project 1
-#File to run the c++ code from 
+#File to run the c++ code and plot the data for different n
 
 from pylab import *
 
-"""
-import os as os
-
-Run c++ code from here:
-
-os.system("do something on terminal")
-"""
-
-
-"""
-Fetching file from c++ code in built folder
-"""
-
+#leser filen, lager arrays med dataen:
 def read_file(filename):
-#leser filen, lager arrays med dataen og kaller paa funksjonene over og plotter
     infile = open(filename, "r")
     infile_ = infile.readlines()
 
@@ -32,15 +19,40 @@ def read_file(filename):
 
     return array(x), array(v)
 
+def u(x):
+	analytic_solution = 1 - (1 - exp(-10))*x - exp(-10*x)
+	return analytic_solution
+
+
 
 n = 10
-#filename = "Users/Ina/build/build-exercise_b-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_n%s.txt" %n
-filename = "linear_eq_solution_n%s.txt" %n
 
-x, y = read_file(filename)
+"""
+import os as os
 
-print x
-print "------"
-print y
-plot(x,y)
-#show()
+Run c++ code from here:
+
+os.system("do something on terminal")
+"""
+
+
+
+"""
+Fetching file from c++ code in built folder
+"""
+filename = '/Users/Ina/build/build-exercise_b-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_n%s.txt' %n
+
+x, v = read_file(filename)
+
+plot(x,v, 'b')
+hold('on')
+plot(x,u(x), 'r')
+xlabel('x')
+ylabel('Solution')
+title('Plot of analytic (red) and numerical solution (blue) with n=%s' %n) 
+show()
+
+
+
+
+
