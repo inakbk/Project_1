@@ -14,15 +14,17 @@ vec f(vec x) //call by f(x[i])
     return 100.*exp(-10.*x);
 }
 
+//Function to make file to plot with in python
 void MakePlotFile(const vec x, const vec solution, const int n)
 {
-    ofstream myfile; //function to make file to plot with
+    ofstream myfile;
         string filename = "linear_eq_solution_n" + to_string(n) + ".txt";
         myfile.open (filename);
-        myfile << "x" << "     " << "Solution" << "Index" << endl;
+        myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
+        myfile << "---------------------" << endl;
         for (int i=1; i<n+1; i++)
         {
-            myfile << x[i] << "    " << solution[i] << i << endl;
+            myfile << x[i] << "    " << solution[i] << endl;
         }
         myfile.close();
 }
