@@ -4,7 +4,7 @@
 #include <iostream>
 #include <armadillo>
 #include <cstdlib>
-//#include <stdio.h>
+//#include <stdio.h> printf function
 
 using namespace std;
 using namespace arma;
@@ -29,42 +29,52 @@ void MakePlotFile(const vec x, const vec solution, const int n)
         myfile.close();
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    const int n = 10;
-    const double h = 1./(n+1);
-
-    /*creating vectors a, b, c of same length as x, so one extra
-     * value on beginning/end of array*/
-    vec a = -1.*ones<vec>(n+2);
-    vec b = 2.*ones<vec>(n+2);
-    vec c = -1.*ones<vec>(n+2);
-
-    //outside range of matrix
-    a[1] = 0;
-    c[n] = 0;
-
-    //creating vector x and b_thilde
-    vec x = linspace<vec>(0, 1, n+2);
-    vec b_thilde = h*h*f(x);
-
-    //forward substitution:
-    for(int i = 2; i < n+1; ++i) //starting from second row till last
+    if(arg == 1)
     {
-        b[i] = b[i] - (a[i]*c[i-1])/b[i-1]; //b' one iteration
-        b_thilde[i] = b_thilde[i] - (a[i]*b_thilde[i-1])/b[i-1];
+        cout << "No arguments. Give 'n' on command line. Eks n=10: 10" << endl;
+        exit(1);
+    }
+    else
+    {
+        const int n = atof(argv[1]);
+        const double h = 1./(n+1);
+
+        /*creating vectors a, b, c of same length as x, so one extra
+         * value on beginning/end of array*/
+        vec a = -1.*ones<vec>(n+2);
+        vec b = 2.*ones<vec>(n+2);
+        vec c = -1.*ones<vec>(n+2);
+
+        //outside range of matrix
+        a[1] = 0;
+        c[n] = 0;
+
+        //creating vector x and b_thilde
+        vec x = linspace<vec>(0, 1, n+2);
+        vec b_thilde = h*h*f(x);
+
+        //forward substitution:
+        for(int i = 2; i < n+1; ++i) //starting from second row till last
+        {
+            b[i] = b[i] - (a[i]*c[i-1])/b[i-1]; //b' one iteration
+            b_thilde[i] = b_thilde[i] - (a[i]*b_thilde[i-1])/b[i-1];
+        }
+
+        //backward substitution:
+        for(int i = n; i > 1; --i) //starting from last row n to i==1
+        {
+            b_thilde[i-1] = b_thilde[i-1] - (c[i-1]*b_thilde[i])/b[i];
+        }
+
+        /*Final solution, dividing by b[i-1] after backward sust. to
+         *  find final solution v */
+        vec v = b_thilde/b;
+        MakePlotFile(x, v, n); //making plot file in built folder
+
     }
 
-    //backward substitution:
-    for(int i = n; i > 1; --i) //starting from last row n to i==1
-    {
-        b_thilde[i-1] = b_thilde[i-1] - (c[i-1]*b_thilde[i])/b[i];
-    }
-
-    /*Final solution, dividing by b[i-1] after backward sust. to
-     *  find final solution v */
-    vec v = b_thilde/b;
-    MakePlotFile(x, v, n); //making plot file in built folder
 
     return 0;
 }
