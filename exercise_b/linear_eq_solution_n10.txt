@@ -1,4 +1,5 @@
 Data:  x     Solution
+Time calculating: 0 seconds
 ---------------------
 0.0909091    0.472737
 0.181818    0.612506

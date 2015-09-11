@@ -31,7 +31,7 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
         myfile.close();
 }
 
-int main(int argc, char *argv[], char *argv[])
+int main(int argc, char *argv[])
 {
     if(argc == 1)
     {
@@ -59,7 +59,7 @@ int main(int argc, char *argv[], char *argv[])
 
         //clocking the operations (only solve, not making file):
         clock_t start_diag, finish_diag; //declaring start and finish time
-        start = clock()
+        start_diag = clock();
 
         //forward substitution:
         for(int i = 2; i < n+1; ++i) //starting from second row till last
@@ -78,10 +78,12 @@ int main(int argc, char *argv[], char *argv[])
          *  find final solution v */
         vec v = b_thilde/b;
         finish_diag = clock();
-        double time_diag = ( (finish_diag - start_diag)/CLOCKS_PER_SEC );
-        cout << "Time for n=" << n << " :  " << time_diag << endl;
+        //double time_diag = ( (finish_diag - start_diag)/CLOCKS_PER_SEC );
+        //cout << "Time for n=" << n << " :  " << time_diag << endl;
 
-        MakePlotFile(x, v, n, time_diag); //making plot file in built folder
+        cout << ( (finish_diag - start_diag)/((double)CLOCKS_PER_SEC )) << endl;
+
+        //MakePlotFile(x, v, n, time_diag); //making plot file in built folder
 
         cout << "Datafile done for n=" << n << endl;
 
