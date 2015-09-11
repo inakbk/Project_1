@@ -31,7 +31,7 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-N = [10, 100, 1000]
+N = [10, 100, 1000, 10**4, 10**5, 10**6, 10**7, 10**8]
 h = zeros(len(N))
 relative_error = zeros(len(N))
 i = 1
@@ -67,12 +67,12 @@ for n in N:
 	Exercise c
 	"""
 
-	relative_error[i-1] = mean(log(abs((v - u(x))/u(x)))) #extraxting rel. error for each n
+	relative_error[i-1] = mean(log10(abs((v - u(x))/u(x)))) #extraxting rel. error for each n
 #	print relative_error[i-1]
 	"""
 	#error for one n:
 	figure(12)
-	rel_err = log(abs((v - u(x))/u(x)))
+	rel_err = log10(abs((v - u(x))/u(x)))
 	plot(x,rel_err)
 	#show()
 	"""
@@ -81,7 +81,7 @@ for n in N:
 	i += 1
 
 figure(12)
-plot(log(h), relative_error)
+plot(log10(h), relative_error)
 legend(['Relative error'], loc='lower left')
 xlabel('$log_{10}(h)$', fontsize=18)
 ylabel('Relative error', fontsize=18)
