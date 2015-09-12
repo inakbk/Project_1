@@ -46,7 +46,7 @@ for n in N:
 	"""
 	Fetching file from c++ code
 	"""
-	filename = 'linear_eq_solution_n%s.txt' %n
+	filename = 'linear_eq_solution_reduced_n%s.txt' %n
 
 	x, v = read_file(filename)
 
