@@ -23,7 +23,7 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
         string filename = "linear_eq_solution_reduced_n" + to_string(n) + ".txt";
         myfile.open (filename);
         myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
-        myfile << "Time calculating: " << time_diag << " seconds" << endl;
+        myfile << "Time calculating: " << time_diag << " " << " seconds" << endl;
         myfile << "---------------------" << endl;
         for (int i=1; i<n+1; i++)
         {

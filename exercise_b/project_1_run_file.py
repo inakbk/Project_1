@@ -19,9 +19,11 @@ def read_file(filename):
 		if len(line.split()) == 2:
 			x.append(float(line.split()[0]))
 			v.append(float(line.split()[1]))
+		if len(line.split()) == 4:
+			time_diag = float(line.split()[2])
     infile.close()
 
-    return array(x), array(v)
+    return array(x), array(v), time_diag
 
 def u(x):
 	analytic_solution = 1 - (1 - exp(-10))*x - exp(-10*x)
@@ -48,7 +50,7 @@ for n in N:
 	"""
 	filename = 'linear_eq_solution_reduced_n%s.txt' %n
 
-	x, v = read_file(filename)
+	x, v, time_diag = read_file(filename)
 
 	figure(i)
 	plot(x,v, 'b')
@@ -57,8 +59,8 @@ for n in N:
 	legend(['Numerical', 'Analytic'], loc='lower left')
 	xlabel('x')
 	ylabel('Solution')
-	title('Plot of analytic and numerical solution with n=%s' %n) 
-	savefig('linear_eq_solution_plot_n%s.eps' %n)
+	title('Plot of analytic and numerical solution with n=%s \nTime spent on num. calculation: %s' %(n, time_diag)) 
+	savefig('linear_eq_solution_plot_reduced_n%s.eps' %n)
 	hold('off')
 
 	#show()
@@ -86,7 +88,7 @@ legend(['Relative error'], loc='lower left')
 xlabel('$log_{10}(h)$', fontsize=18)
 ylabel('Relative error', fontsize=18)
 title('Plot of relative error with n=%s' %N) 
-savefig('linear_eq_error_plot_N%s.eps' %N[-1])
+savefig('linear_eq_error_plot_reduced_N%s.eps' %N[-1])
 
 
 show()
