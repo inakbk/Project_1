@@ -87,16 +87,14 @@ int main(int argc, char *argv[])
         //creating vector x and b_thilde
         vec x = linspace<vec>(0, 1, n+2);
         vec b_thilde = h*h*f(x);
-        cout << b_thilde[5] << endl;
 
         //b, b_thilde, x and n not changed in main() so they can be used for next method
         F_B_Substitution(b, b_thilde, x, n);
 
-        cout << b_thilde[5] << endl; //checking if function changed the variables
-
         //Using the armadillo library with LU decomposition to solve the equations:
-        vec v_lu = zeros<vec>(n+2);
-
+//do something here that you time here
+        //lu(L,U,X)
+        //X = solve(A,B)
 
     }
 
