@@ -30,7 +30,40 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
             myfile << x[i] << "    " << solution[i] << endl;
         }
         myfile.close();
+        cout << "Datafile done for n=" << n << endl;
 }
+
+void F_B_Substitution(vec b, vec b_thilde, const vec x, const int n)
+{
+    //clocking the operations (only solve, not making file):
+    clock_t start_diag, finish_diag; //declaring start and finish time
+    start_diag = clock();
+
+    //forward substitution:
+    for(int i = 2; i < n+1; ++i) //starting from second row till last
+    {
+        b[i] = b[i] - 1/b[i-1]; //b' one iteration
+        b_thilde[i] = b_thilde[i] + b_thilde[i-1]/b[i-1];
+    }
+
+    //backward substitution:
+    for(int i = n; i > 1; --i) //starting from last row n to i==1
+    {
+        b_thilde[i-1] = b_thilde[i-1] + b_thilde[i]/b[i];
+    }
+
+    /*Final solution, dividing by b[i-1] after backward sust. to
+     *  find final solution v */
+    vec v = b_thilde/b;
+
+    //stopping timer:
+    finish_diag = clock();
+    double time_diag = ( (finish_diag - start_diag)/((double)CLOCKS_PER_SEC ) );
+    cout << "Time for n=" << n << ":  " << time_diag << "seconds" << endl;
+
+    MakePlotFile(x, v, n, time_diag); //making plot file
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -44,48 +77,21 @@ int main(int argc, char *argv[])
         const int n = atof(argv[1]);
         const double h = 1./(n+1);
 
-        /*creating vectors b of same length as x, so one extra
+        /*Creating vectors b of same length as x, so one extra
          * value on beginning/end of array.
          * a and c is constantly -1, removing them to reduce number of
          * floating point operations (b is changing, not a or c)*/
-
-        //vec a = -1.*ones<vec>(n+2);
         vec b = 2.*ones<vec>(n+2);
-        //vec c = -1.*ones<vec>(n+2);
 
         //creating vector x and b_thilde
         vec x = linspace<vec>(0, 1, n+2);
         vec b_thilde = h*h*f(x);
 
-        //clocking the operations (only solve, not making file):
-        clock_t start_diag, finish_diag; //declaring start and finish time
-        start_diag = clock();
+        F_B_Substitution(b, b_thilde, x, n)
 
-        //forward substitution:
-        for(int i = 2; i < n+1; ++i) //starting from second row till last
-        {
-            b[i] = b[i] - 1/b[i-1]; //b' one iteration
-            b_thilde[i] = b_thilde[i] + b_thilde[i-1]/b[i-1];
-        }
+        //Using the armadillo library with LU decomposition to solve the equations:
+        vec v_lu = zeros<vec>(n+2);
 
-        //backward substitution:
-        for(int i = n; i > 1; --i) //starting from last row n to i==1
-        {
-            b_thilde[i-1] = b_thilde[i-1] + b_thilde[i]/b[i];
-        }
-
-        /*Final solution, dividing by b[i-1] after backward sust. to
-         *  find final solution v */
-        vec v = b_thilde/b;
-
-        //stopping timer:
-        finish_diag = clock();
-        double time_diag = ( (finish_diag - start_diag)/((double)CLOCKS_PER_SEC ) );
-        cout << "Time for n=" << n << ":  " << time_diag << "seconds" << endl;
-
-        MakePlotFile(x, v, n, time_diag); //making plot file
-
-        cout << "Datafile done for n=" << n << endl;
 
     }
 
