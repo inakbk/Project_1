@@ -1,5 +1,6 @@
-//Exercise b, algorithm for solving the set of linear equations
-//a_i*v_(i-1) + b_i*v_i + c_i*v_(i+1) = h*h*f(x_i)
+/*Exercise b, algorithm for solving the set of linear equations
+ * with two different methods and timing them
+ * a_i*v_(i-1) + b_i*v_i + c_i*v_(i+1) = h*h*f(x_i)*/
 
 #include <iostream>
 #include <armadillo>
