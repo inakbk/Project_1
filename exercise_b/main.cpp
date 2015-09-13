@@ -23,7 +23,7 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
         string filename = "linear_eq_solution_" + FileName + "_n" + to_string(n) + ".txt";
         myfile.open (filename);
         myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
-        myfile << "Time calculating with substitution: " << time_diag << " " << " seconds" << endl;
+        myfile << "Time calculating with " << FileName << ": "  << time_diag << " " << " seconds" << endl;
         myfile << "---------------------" << endl;
         for (int i=1; i<n+1; i++)
         {
@@ -66,7 +66,7 @@ void Forward_Backward_Substitution(vec b, vec b_thilde, const vec x, const int n
     //v.print();
 }
 
-/*
+
 void solve_lu(vec b, vec b_thilde, const vec x, const int n)
 {
     int a = -1.;
@@ -102,9 +102,9 @@ void solve_lu(vec b, vec b_thilde, const vec x, const int n)
     cout << "LU solve: Time for n=" << n << ":  " << time_lu << "seconds" << endl;
 
     //Sending the vectors to file:
-    MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
+    //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
 }
-*/
+
 
 int main(int argc, char *argv[])
 {
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
         //cout << "-----" << endl;
 
         //Using the armadillo library with LU decomposition to solve the equations:
-        //solve_lu(b, b_thilde, x, n);
+        solve_lu(b, b_thilde, x, n);
 
     }
 
