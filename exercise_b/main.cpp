@@ -17,10 +17,10 @@ vec f(vec x) //call by f(x[i])
 }
 
 //Function to make file to plot with in python
-void MakePlotFile(const vec x, const vec solution, const int n, const double time_diag)
+void MakePlotFile(const vec x, const vec solution, const int n, const double time_diag, string FileName)
 {
     ofstream myfile;
-        string filename = "linear_eq_solution_reduced_n" + to_string(n) + ".txt";
+        string filename = "linear_eq_" + FileName + "_n" + to_string(n) + ".txt";
         myfile.open (filename);
         myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
         myfile << "Time calculating: " << time_diag << " " << " seconds" << endl;
@@ -62,7 +62,7 @@ void F_B_Substitution(vec b, vec b_thilde, const vec x, const int n)
     cout << "Time for n=" << n << ":  " << time_diag << "seconds" << endl;
 
     //Sending the vectors to file:
-    MakePlotFile(x, v, n, time_diag); //making plot file
+    MakePlotFile(x, v, n, time_diag, "solution_reduced"); //making plot file
 }
 
 

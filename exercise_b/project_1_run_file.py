@@ -33,7 +33,7 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-N = [10]#, 100, 1000]#, 10**4, 10**5]#, 10**6, 10**7, 10**8]
+N = [10, 100, 1000]#, 10**4, 10**5]#, 10**6, 10**7, 10**8]
 h = zeros(len(N))
 relative_error = zeros(len(N))
 i = 1
@@ -83,7 +83,7 @@ for n in N:
 	i += 1
 
 figure(12)
-plot(log10(h), relative_error)
+plot(log10(h), relative_error, 'ko-')
 legend(['Relative error'], loc='lower left')
 xlabel('$log_{10}(h)$', fontsize=18)
 ylabel('Relative error', fontsize=18)
