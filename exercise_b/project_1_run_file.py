@@ -78,33 +78,34 @@ for n in N:
 	Exercise c,d
 	"""
 
-	relative_error[i-1] = mean(log10(abs((v - u(x))/u(x)))) #extraxting rel. error for each n
-	relative_error_lu[i-1] = mean(log10(abs((v_lu - u(x))/u(x)))) 
+	relative_error[i-1] = mean((abs((v - u(x))/u(x)))) #extraxting rel. error for each n
+	relative_error_lu[i-1] = mean((abs((v_lu - u(x))/u(x)))) 
 
 	h[i-1] = 1./(n+1)
 	i += 1
 
 figure(12)
 subplot(211)
-semilogx(h, relative_error, 'ko-')
+grid('on')
+loglog(h, relative_error, 'ko-')
 hold('on')
-semilogx(h, relative_error_lu, 'ro-')
+loglog(h, relative_error_lu, 'ro-')
 legend(['Relative error subst.', 'Relative error lu dec.'], fontsize=14, loc='lower left')
 xlabel('h', fontsize=18)
 ylabel('Relative error', fontsize=18)
-title('Plot of relative error for both numerical methods with n=%s' %N, fontsize=18) 
+title('Plot of relative error for both numerical methods with n=%s' %N, fontsize=16) 
 savefig('linear_eq_error_plot_all_num_N%s.eps' %N[-1])
 hold('off')
 
 #figure(13)
 subplot(212)
-semilogx(h, time_diag, 'bo-')
+loglog(h, time_diag, 'bo-')
 hold('on')
-semilogx(h, time_lu, 'go-')
+loglog(h, time_lu, 'go-')
 legend(['Time subst.', 'Time lu dec.'], fontsize=14, loc='lower left')
 xlabel('h', fontsize=18)
 ylabel('Time [sec]', fontsize=18)
-title('Plot of execution time for both numerical methods with %s' %N, fontsize=18) 
+title('Plot of execution time for both numerical methods with %s' %N, fontsize=16) 
 savefig('linear_eq_time_plot_all_num_N%s.eps' %N[-1])
 
 tight_layout()
