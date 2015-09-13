@@ -12,6 +12,9 @@
 \usepackage{shadow}
 \usepackage{hyperref}
 
+\usepackage{caption}
+\usepackage{subcaption}
+
 \setcounter{tocdepth}{2}
 
 \lstset{language=c++}
@@ -316,15 +319,60 @@ The timing only enclosed the code which did the calculations, not the code which
 
 \section{Results}
 
-Compare your results (make plots) with the closed-form solution for the different number of grid points  in the 
-interval $x\in(0,1)$.  The different number of grid points corresponds to different step lengths $h$.
+\begin{figure*}[t!]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n10.eps}
+        %\caption{Lorem ipsum}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n100.eps}
+        %\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
+    \end{subfigure}
+    \caption{Plots of the numerical and analytical solutions for $n=10, 100$.}
+    \label{fig:n_small}
+\end{figure*}
 
-Relative error: Make a table of the results and 
-comment your results. 
+\begin{figure*}[t!]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n1000.eps}
+        %\caption{Lorem ipsum}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n10000.eps}
+        %\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
+    \end{subfigure}
+    \caption{Plots of the numerical and analytical solutions for $n=10^3, 10^4$.}
+    \label{fig:n_big}
+\end{figure*}
 
-compare the time usage between LU decomposition and  your
-tridiagonal solver.   Make a table of the results and comment the differences
-in execution time
+\begin{figure*}[t!]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=2.5in]{exercise_b/linear_eq_time_plot_all_num_N10000.eps}
+        %\caption{Lorem ipsum}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=2.5in]{exercise_b/first_runs/linear_eq_error_plot_N10E8.eps}
+        %\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
+    \end{subfigure}
+    \caption{Caption place holder}
+    \label{fig: time_error}
+\end{figure*}
+
+In figures \ref{fig:n_small} and \ref{fig:n_big} we see the two numerical methods plotted together with the analytical solution for n in $N = [10^1, 10^2, 10^3, 10^4]$. The backward/forward substitution method (blue) is clearly closest to the analytical solution (red) for low n. For bigger n the LU decomposition method lookes just as good as the substitution method with 'by eye' estimates. In figure \ref{fig: time_error} we see that the relative error for the two methods is reduced for bigger n (smaller h), but the error is clearly smallest for the substitution method for all n. For $n=10^4$ the error is about a factor $\approx10^3$ smaller for the substitution method than the LU decomposition method. We also see that the execution time is smaller for the substitution method, as much as by a factor $\approx10^6$ for $n=10^4$!
+
+
 
 Can you run the standard LU decomposition
 for a matrix of the size $10^5\times 10^5$?
