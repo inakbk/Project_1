@@ -59,14 +59,14 @@ void Forward_Backward_Substitution(vec b, vec b_thilde, const vec x, const int n
     //stopping timer:
     finish_diag = clock();
     double time_diag = ( (finish_diag - start_diag)/((double)CLOCKS_PER_SEC ) );
-    cout << "Time for n=" << n << ":  " << time_diag << "seconds" << endl;
+    cout << "Substitution: Time for n=" << n << ":  " << time_diag << "seconds" << endl;
 
     //Sending the vectors to file:
     MakePlotFile(x, v, n, time_diag, "reduced"); //making plot file
-    v.print();
+    //v.print();
 }
 
-void solve_lu(vec b, vec b_thilde, const int n)
+void solve_lu(vec b, vec b_thilde, const vec x, const int n)
 {
     int a = -1.;
     int c = -1.;
@@ -93,15 +93,15 @@ void solve_lu(vec b, vec b_thilde, const int n)
     vec y = solve(L,b_thilde);
     //size(y).print();
     vec v = solve(U,y);
-    v.print();
+    //v.print();
 
     //stopping timer:
     finish_lu = clock();
     double time_lu = ( (finish_lu - start_lu)/((double)CLOCKS_PER_SEC ) );
-    cout << "Time for LU solve with n=" << n << ":  " << time_lu << "seconds" << endl;
+    cout << "LU solve: Time for n=" << n << ":  " << time_lu << "seconds" << endl;
 
     //Sending the vectors to file:
-    //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
+    MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
 }
 
 
@@ -131,10 +131,10 @@ int main(int argc, char *argv[])
          * (b, b_thilde, x and n not changed in main() so they can be
          * used for next method) */
         Forward_Backward_Substitution(b, b_thilde, x, n);
-        cout << "-----" << endl;
+        //cout << "-----" << endl;
 
         //Using the armadillo library with LU decomposition to solve the equations:
-        solve_lu(b, b_thilde, n);
+        solve_lu(b, b_thilde, x, n);
 
     }
 
