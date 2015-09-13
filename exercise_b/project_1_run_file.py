@@ -36,7 +36,7 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-N = [10, 100, 1000, 10**4, 10**5, 10**6, 10**7, 10**8] #the highest n only works for the subst. method
+N = [10, 100, 1000, 10**4]#, 10**5, 10**6, 10**7, 10**8] #the highest n only works for the subst. method
 h = zeros(len(N))
 h_lu = zeros(len(N))
 relative_error = zeros(len(N))
@@ -49,25 +49,23 @@ for n in N:
 	"""
 	Run c++ code from here with n as command line argument:
 	"""
-	#os.system('c++ -o main main.cpp')
-	#os.system('./main %s' %n)
+	os.system('c++ -o main main.cpp')
+	os.system('./main %s' %n)
 
 	"""
 	Fetching file from c++ code
 	C++ code with LU decomposition needs to be run in QT Creator first to avoid (weird) compilation error..
 	"""
-	print 'noe', n
 	filename_subst = 'linear_eq_solution_reduced_n%s.txt' %n
 	x, v, time_diag[i-1] = read_file(filename_subst)
 
+	#making shure right lengt of h in case of running for ridiculously large n:
 	if n < 10**5:
 		filename_lu = '/Users/Ina/build/build-exercise_d-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_lu_n%s.txt' %n
 		x_lu, v_lu, time_lu[i-1] = read_file(filename_lu)
 		relative_error_lu[i-1] = mean((abs((v_lu - u(x))/u(x)))) 
 		h_lu[i-1] = 1./(n+1)
 
-	
-	"""
 		figure(i)
 		plot(x,v, 'b')
 		hold('on')
@@ -79,14 +77,12 @@ for n in N:
 		title('Plot of analytic and numerical solutions with n=%s ' %n, fontsize=18) 
 		savefig('linear_eq_solution_plot_all_num_n%s.eps' %n)
 		hold('off')
-	"""
 
 	relative_error[i-1] = mean((abs((v - u(x))/u(x)))) #extraxting rel. error for each n
 	
 	h[i-1] = 1./(n+1)
 	i += 1
 
-print 'ssss'
 figure(12)
 subplot(211)
 grid('on')
@@ -112,11 +108,8 @@ savefig('linear_eq_time_plot_all_num_N%s.eps' %N[-1])
 
 tight_layout()
 
-print 'llll'
-
 show()
 
-print 'hhh'
 
 
 
