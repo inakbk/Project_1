@@ -33,7 +33,7 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
         cout << "Datafile done for n=" << n << endl;
 }
 
-void Forward_Bckward_Substitution(vec b, vec b_thilde, const vec x, const int n)
+void Forward_Backward_Substitution(vec b, vec b_thilde, const vec x, const int n)
 {
     //clocking the operations (only solve, not making file):
     clock_t start_diag, finish_diag; //declaring start and finish time
@@ -63,6 +63,45 @@ void Forward_Bckward_Substitution(vec b, vec b_thilde, const vec x, const int n)
 
     //Sending the vectors to file:
     MakePlotFile(x, v, n, time_diag, "reduced"); //making plot file
+    v.print();
+}
+
+void solve_lu(vec b, vec b_thilde, const int n)
+{
+    int a = -1.;
+    int c = -1.;
+    //creating A, L, U and making shure b_thilde has right dim.:
+    mat A = zeros<mat>(n,n);
+    mat L = zeros<mat>(n,n);
+    mat U = zeros<mat>(n,n);
+    b_thilde.shed_row(0);
+    b_thilde.shed_row(n);
+    for(int i=0, j=1; (i<=n-1) && (j<=n-1); ++i, ++j)
+    {
+        A(i,j) = c;
+        A(i,i) = b[i+1];
+        A(j,i) = a;
+    }
+    A(n-1,n-1) = b[n];
+
+    //clocking the operations (only solve, not making file):
+    clock_t start_lu, finish_lu; //declaring start and finish time
+    start_lu = clock();
+
+    lu(L,U,A);
+    //size(L).print();
+    vec y = solve(L,b_thilde);
+    //size(y).print();
+    vec v = solve(U,y);
+    v.print();
+
+    //stopping timer:
+    finish_lu = clock();
+    double time_lu = ( (finish_lu - start_lu)/((double)CLOCKS_PER_SEC ) );
+    cout << "Time for LU solve with n=" << n << ":  " << time_lu << "seconds" << endl;
+
+    //Sending the vectors to file:
+    //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
 }
 
 
@@ -91,50 +130,12 @@ int main(int argc, char *argv[])
         /*Solving equations by forward/backward substitution:
          * (b, b_thilde, x and n not changed in main() so they can be
          * used for next method) */
-        //Forward_Bckward_Substitution(b, b_thilde, x, n);
+        Forward_Backward_Substitution(b, b_thilde, x, n);
+        cout << "-----" << endl;
 
         //Using the armadillo library with LU decomposition to solve the equations:
-        int a = -1.;
-        int c = -1.;
-        //creating A, L, U
-        mat A = zeros<mat>(n,n);
-        mat L = zeros<mat>(n,n);
-        mat U = zeros<mat>(n,n);
-        //b_thilde.print();
-        //cout << "----" << endl;
-        b_thilde.shed_row(0);
-        b_thilde.shed_row(n);
-        //b_thilde.print();
-        //size(b_thilde).print();
-        for(int i=0, j=1; (i<=n-1) && (j<=n-1); ++i, ++j)
-        {
-            A(i,j) = c;
-            A(i,i) = b[i+1];
-            A(j,i) = a;
-        }
-        A(n-1,n-1) = b[n];
+        solve_lu(b, b_thilde, n);
 
-        //clocking the operations (only solve, not making file):
-        clock_t start_lu, finish_lu; //declaring start and finish time
-        start_lu = clock();
-
-        lu(L,U,A);
-        //size(L).print();
-
-
-        vec y = solve(L,b_thilde);
-        //size(y).print();
-        vec v = solve(U,y);
-        v.print();
-
-
-        //stopping timer:
-        finish_lu = clock();
-        double time_lu = ( (finish_lu - start_lu)/((double)CLOCKS_PER_SEC ) );
-        cout << "Time for LU solve with n=" << n << ":  " << time_lu << "seconds" << endl;
-
-        //Sending the vectors to file:
-        //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
     }
 
     return 0;
