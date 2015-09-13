@@ -89,20 +89,21 @@ void solve_lu(vec b, vec b_thilde, const vec x, const int n)
     clock_t start_lu, finish_lu; //declaring start and finish time
     start_lu = clock();
 
-    lu(L,U,A);
+    //arma::lu(L,U,A);
     //size(L).print();
-    vec y = solve(L,b_thilde);
+    //vec y = solve(L,b_thilde);
     //size(y).print();
-    vec v = solve(U,y);
+    //vec v = solve(U,y);
     //v.print();
 
     //stopping timer:
     finish_lu = clock();
     double time_lu = ( (finish_lu - start_lu)/((double)CLOCKS_PER_SEC ) );
-    cout << "LU solve: Time for n=" << n << ":  " << time_lu << "seconds" << endl;
+    cout << "LU solve: Time for n=" << n << ":  " << time_lu << " seconds" << endl;
 
     //Sending the vectors to file:
     //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
+
 }
 
 
