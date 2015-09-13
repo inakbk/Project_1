@@ -353,34 +353,27 @@ The timing only enclosed the code which did the calculations, not the code which
     \label{fig:n_big}
 \end{figure*}
 
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[height=2.5in]{exercise_b/linear_eq_time_plot_all_num_N10000.eps}
-        %\caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[height=2.5in]{exercise_b/first_runs/linear_eq_error_plot_N10E8.eps}
-        %\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-    \label{fig: time_error}
-\end{figure*}
+\begin{figure}[htp]
+\caption{Plots of the relative error and execution time.}
+\centering
+\includegraphics[width=0.8\textwidth]{exercise_b/linear_eq_time_plot_all_num_N10000.eps}
+\label{fig:error}
+\end{figure}
 
-In figures \ref{fig:n_small} and \ref{fig:n_big} we see the two numerical methods plotted together with the analytical solution for n in $N = [10^1, 10^2, 10^3, 10^4]$. The backward/forward substitution method (blue) is clearly closest to the analytical solution (red) for low n. For bigger n the LU decomposition method lookes just as good as the substitution method with 'by eye' estimates. In figure \ref{fig: time_error} we see that the relative error for the two methods is reduced for bigger n (smaller h), but the error is clearly smallest for the substitution method for all n. For $n=10^4$ the error is about a factor $\approx10^3$ smaller for the substitution method than the LU decomposition method. We also see that the execution time is smaller for the substitution method, as much as by a factor $\approx10^6$ for $n=10^4$!
+In figures \ref{fig:n_small} and \ref{fig:n_big} we see the two numerical methods plotted together with the analytical solution for n in $N = [10^1, 10^2, 10^3, 10^4]$. The backward/forward substitution method (blue) is clearly closest to the analytical solution (red) for low n. For bigger n the LU decomposition method lookes just as good as the substitution method with 'by eye' estimates. In figure \ref{fig: error} we see that the relative error for the two methods is reduced for bigger n (smaller h), but the error is clearly smallest for the substitution method for all n. For $n=10^4$ the error is about a factor $\approx10^3$ smaller for the substitution method than the LU decomposition method. We also see that the execution time is smaller for the substitution method, as much as by a factor $\approx10^6$ for $n=10^4$!
 
+The LU decomposition method did not work for $n>10^4$, then the program crashed, but the substitution method did not crash. For fun the last plot of this is in figure \ref{fig:tull} we see the errors and execution time for $N = [10^1, \dots, 10^8]$ for the substitution method and $N = [10^1, 10^2, 10^3, 10^4]$ for the LU decomposition method. 
 
+\begin{figure}[htp]
+\caption{Plots of the relative error and execution time for ridiculous large n.}
+\centering
+\includegraphics[width=0.8\textwidth]{exercise_b/linear_eq_time_plot_all_num_N100000000.eps}
+\label{fig:tull}
+\end{figure}
 
-Can you run the standard LU decomposition
-for a matrix of the size $10^5\times 10^5$?
-Comment your results.
+%%figure
 
-Include your results either in figure form or in a table. Remember to
-       label your results. All tables and figures should have relevant captions
-       and labels on the axes.
+%Include your results either in figure form or in a table. Remember to label your results. All tables and figures should have relevant captions and labels on the axes.
 \section{Discussion}
 
 
