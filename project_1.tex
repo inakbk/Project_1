@@ -43,7 +43,7 @@ The two numerical methods used to solve the equations is forward/backward substi
 
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction: Motivation and Purpose}
 
 %Using text from exercise where it is natural
 
@@ -73,39 +73,41 @@ $r\rightarrow x$. Then general one-dimensional \textbf{Poisson equation} reads:
 \end{equation}
 where the inhomogeneous term $f$ (or source term) is given by the charge distribution $\rho$  multiplied by $r$ and the constant $-4\pi$.
 
-In this project the general equation \ref{eq:Poisson} is the equation of interest that will be solved numerically. 
+In this project the general equation \ref{eq:Poisson} is the equation of interest that will be solved numerically. The purpose of this is to shed light on how to best solve simple linear second-order differential equations in Physics numerically. 
 
+\section{Theory: Rewriting the equation into a linear algebra problem}
+To solve equation \ref{eq:Poisson} we will use Dirichlet boundary conditions and rewrite the equation as a set of linear equations.
 
-
-\begin{enumerate}
-\item[(a)] 
-In this project we will solve the one-dimensional Poissson equation
-with Dirichlet boundary conditions by rewriting it as a set of linear equations.
-
-
-To be more explicit we will solve the equation
+In specific we will solve:
 \[
 -u''(x) = f(x), \hspace{0.5cm} x\in(0,1), \hspace{0.5cm} u(0) = u(1) = 0.
 \]
-and we define the discretized approximation  to $u$ as $v_i$  with 
-grid points $x_i=ih$   in the interval from $x_0=0$ to $x_{n+1}=1$.
-The step length or spacing is defined as $h=1/(n+1)$. 
-We have then the boundary conditions $v_0 = v_{n+1} = 0$.
-We  approximate the second
-derivative of $u$ with 
-\[
-   -\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=1,\dots, n,
-\]
+where we assume that the the source term is given by $f(x) = 100e^{-10x}$.  Then the above differential equation
+has a closed-form analytical solution given by:
+\begin{equation}
+u(x) = 1-(1-e^{-10})x-e^{-10x}
+\label{eq:analytical_sol}
+\end{equation}
+
+For the numerical methods we define the discretized approximation  to $u$ as $v_i$  with grid points $x_i=ih$ in the interval from $x_0=0$ to $x_{n+1}=1$.
+The step length or spacing is defined as $h=1/(n+1)$. The boundary conditions gives $v_0 = v_{n+1} = 0$.
+We  approximate the second derivative of $u$ with 
+\begin{equation}
+-\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=1,\dots, n,
+\label{eq:sec_der}
+\end{equation}
 where $f_i=f(x_i)$.
 
-\rule{\textwidth}{1pt}
-\textbf{Exercise:}
-
-Show that you can rewrite this equation as a linear set of equations of the form 
-\[
-   {\bf A}{\bf v} = \tilde{{\bf b}},
+We can rewrite this equation as a linear set of equations of the form 
+\begin{equation}
+   {\bf A}{\bf v} = \tilde{{\bf b}}
+   \label{eq:linear_eq}
+\end{equation}
+by rewriting equation \ref{eq:sec_der} as
+\[  
+   -v_{i+1}-v_{i-1}+2v_i = h^2f_i
 \]
-where ${\bf A}$ is an $n\times n$  tridiagonal matrix which we rewrite as 
+so that ${\bf A}$ is an $n\times n$  tridiagonal matrix which we write as 
 \begin{equation}
     {\bf A} = \left(\begin{array}{cccccc}
                            2& -1& 0 &\dots   & \dots &0 \\
@@ -116,15 +118,7 @@ where ${\bf A}$ is an $n\times n$  tridiagonal matrix which we rewrite as
                            0&\dots    &  & 0  &-1 & 2 \\
                       \end{array} \right)
 \end{equation}
-and $\tilde{b}_i=h^2f_i$.
-
-
-\textbf{Solution:}
-
-\[
-   -\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \\
-   \Rightarrow -v_{i+1}-v_{i-1}+2v_i = h^2f_i
-\]
+and the left hand side is given by $\tilde{b}_i=h^2f_i$. The total set of matrixes must then be given by:
 
 \begin{equation}
 {\bf A}{\bf v} = \left(\begin{array}{cccccc}
@@ -162,19 +156,8 @@ and $\tilde{b}_i=h^2f_i$.
                       \tilde{{\bf b}}
 \end{equation}
 
-\rule{\textwidth}{1pt}
-\textbf{Assume/Analytical solution:}\\
-In our case we will assume  that the source term is 
-$f(x) = 100e^{-10x}$, and keep the same interval and boundary 
-conditions. Then the above differential equation
-has a closed-form  solution given by $u(x) = 1-(1-e^{-10})x-e^{-10x}$ (convince yourself that this is correct by inserting the
-solution in the Poisson equation).  We will compare
-our numerical solution with this result in the next exercise. 
-
-\item[(b)]
-We can rewrite our matrix ${\bf A}$ in terms of one-dimensional vectors $a,b,c$  
-of length $1:n$. 
-Our linear equation reads
+\subsection{Forward and Backward substitution}
+We can rewrite our matrix ${\bf A}$ further in terms of one-dimensional vectors $a,b,c$  of length $1:n$:
 \begin{equation}
     {\bf A} = \left(\begin{array}{cccccc}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
@@ -200,15 +183,49 @@ Our linear equation reads
                            \tilde{b}_n\\
                       \end{array} \right).
 \end{equation}
-A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
-those on and immediately above and below the leading diagonal.
-The above tridiagonal system   can be written as
+
+A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for those on and immediately above and below the leading diagonal. The above tridiagonal system (Equation \ref{eq:linear_eq}) can be written as
 \begin{equation}
   a_iv_{i-1}+b_iv_i+c_iv_{i+1} = \tilde{b}_i,
 \end{equation}
 for $i=1,2,\dots,n$. 
-The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition 
-and forward substitution and finally a backward substitution. 
+The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition and forward substitution and a backward substitution. 
+
+%% specific algorithm goes here!! (or in different subsec.)
+
+\subsection{LU Decomposition}
+The LU decomposition method means that we can decompose the matrix ${\bf A}$ as the product of two matrices ${\bf L}$ and ${\bf U}$:
+\[
+{\bf A} = {\bf L}{\bf U}
+\]
+ The matrix ${\bf L}$ has elements only below the diagonal (and thereby the naming lower) and a matrix ${\bf U}$ contains both the diagonal and matrix elements above the diagonal (leading to the labelling upper). The matrix ${\bf A}$ has an LU factorization if the determinant is different from zero. The LU factorization is unique if A is non-singular.
+ 
+ This factorisation can be used to solve equation \ref{eq:linear_eq} now written as
+\[
+ {\bf A}{\bf v} = {\bf L}{\bf U}{\bf v} = {\bf \tilde{b}}
+\]
+exploiting the fact that
+\[ 
+{\bf U}{\bf v} = {\bf L}^{-1}{\bf \tilde{b}} = {\bf y} \Rightarrow {\bf L}{\bf y} = {\bf \tilde{b}}
+\]
+to find ${\bf y}$. Then further use the now known ${\bf y}$ to find ${\bf v}$ by solving the much simpler equation:
+\[
+{\bf U}{\bf v} = {\bf y}
+\]
+
+
+\section{Theory: Relative error}
+
+\section{Algorithm}
+
+
+
+\begin{enumerate}
+\item[(a)] 
+
+
+\item[(b)]
+
 
 
 \rule{\textwidth}{1pt}
