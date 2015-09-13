@@ -54,12 +54,9 @@ void solve_lu(vec b, vec b_thilde, const vec x, const int n)
     clock_t start_lu, finish_lu; //declaring start and finish time
     start_lu = clock();
 
-    //arma::lu(L,U,A);
-    //size(L).print();
-    //vec y = solve(L,b_thilde);
-    //size(y).print();
-    //vec v = solve(U,y);
-    //v.print();
+    lu(L,U,A);
+    vec y = solve(L,b_thilde);
+    vec v = solve(U,y);
 
     //stopping timer:
     finish_lu = clock();
@@ -67,7 +64,7 @@ void solve_lu(vec b, vec b_thilde, const vec x, const int n)
     cout << "LU solve: Time for n=" << n << ":  " << time_lu << " seconds" << endl;
 
     //Sending the vectors to file:
-    //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
+    MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
 
 }
 
@@ -84,9 +81,7 @@ int main(int argc, char *argv[])
         const double h = 1./(n+1);
 
         /*Creating vectors b of same length as x, so one extra
-         * value on beginning/end of array.
-         * a and c is constantly -1, removing them to reduce number of
-         * floating point operations (b is changing, not a or c)*/
+         * value on beginning/end of array.*/
         vec b = 2.*ones<vec>(n+2);
 
         //creating vector x and b_thilde

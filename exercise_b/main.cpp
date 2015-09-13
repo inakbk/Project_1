@@ -62,7 +62,6 @@ void Forward_Backward_Substitution(vec b, vec b_thilde, const vec x, const int n
 
     //Sending the vectors to file:
     MakePlotFile(x, v, n, time_diag, "reduced"); //making plot file
-    //v.print();
 }
 
 int main(int argc, char *argv[])
@@ -91,7 +90,6 @@ int main(int argc, char *argv[])
          * (b, b_thilde, x and n not changed in main() so they can be
          * used for next method) */
         Forward_Backward_Substitution(b, b_thilde, x, n);
-        //cout << "-----" << endl;
 
     }
 
