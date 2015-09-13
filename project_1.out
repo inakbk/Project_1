@@ -2,5 +2,8 @@
 \BOOKMARK [1][-]{section.2}{Theory: Rewriting the equation into a linear algebra problem}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Forward and Backward substitution}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{LU Decomposition}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Theory: Relative error}{}% 5
-\BOOKMARK [1][-]{section.4}{Algorithm}{}% 6
+\BOOKMARK [1][-]{section.3}{Algorithm}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Forward and Backward substitution}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{LU Decomposition}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Relative error}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Calculating execution time}{section.3}% 9

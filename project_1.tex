@@ -73,7 +73,7 @@ $r\rightarrow x$. Then general one-dimensional \textbf{Poisson equation} reads:
 \end{equation}
 where the inhomogeneous term $f$ (or source term) is given by the charge distribution $\rho$  multiplied by $r$ and the constant $-4\pi$.
 
-In this project the general equation \ref{eq:Poisson} is the equation of interest that will be solved numerically. The purpose of this is to shed light on how to best solve simple linear second-order differential equations in Physics numerically. 
+In this project the general equation \ref{eq:Poisson} is the equation of interest that will be solved numerically. The purpose of this is to shed light on how to best solve simple linear second-order differential equations in Physics numerically by using forward/backward substitution and LU-decomposition. 
 
 \section{Theory: Rewriting the equation into a linear algebra problem}
 To solve equation \ref{eq:Poisson} we will use Dirichlet boundary conditions and rewrite the equation as a set of linear equations.
@@ -186,9 +186,8 @@ We can rewrite our matrix ${\bf A}$ further in terms of one-dimensional vectors 
 
 A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for those on and immediately above and below the leading diagonal. The above tridiagonal system (Equation \ref{eq:linear_eq}) can be written as
 \begin{equation}
-  a_iv_{i-1}+b_iv_i+c_iv_{i+1} = \tilde{b}_i,
+  a_iv_{i-1}+b_iv_i+c_iv_{i+1} = \tilde{b}_i, \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=1,2,\dots,n
 \end{equation}
-for $i=1,2,\dots,n$. 
 The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition and forward substitution and a backward substitution. 
 
 %% specific algorithm goes here!! (or in different subsec.)
@@ -214,17 +213,101 @@ to find ${\bf y}$. Then further use the now known ${\bf y}$ to find ${\bf v}$ by
 \]
 
 
-\section{Theory: Relative error}
-
 \section{Algorithm}
 
+The algorithms are structured into two \texttt{c++} programs and one \texttt{python} program. Each of the \texttt{c++} programs solves the equations for an nxn matrix, one with the algorithm for forward/backward substitution and the other with the algorithm for LU decomposition. Both algorithms are described below. After solving the equations the result vector $v$ is written to a \texttt{.txt} file along with the $x$ value and execution time. The value of n is given on the command line so that the program is executed one time for each n. 
+
+The python program compiles and runs the \texttt{c++} program\footnote{The aim was to only have one \texttt{c++} progam, but when I tried running the \texttt{c++} code with the LU decomposition from the python script i got a compilation error. The same compilation error came when running from the terminal, but not from QT creator. So with little time to finish the project i fixed the problem by running the LU decomposition from QT Creator before running the python script. } so that the \texttt{.txt} files are given, loads and plots the data along with the analytical solution and computes and plots the relative error. 
 
 
-\begin{enumerate}
-\item[(a)] 
 
 
-\item[(b)]
+%%explaining main structure
+
+\subsection{Forward and Backward substitution}
+The purpose of the forward and backward substitution is to make row operations on both left/right hand side of the equation so that at the left hand side eventually is left with the identity matrix times the unknown vector, ${\bf A} \rightarrow {\bf A}^* \rightarrow {\bf I}$ and ${\bf \tilde{b}} \rightarrow {\bf \tilde{b}}^*$ so the solution is then the altered left hand side:
+\[
+{\bf I}{\bf v} = {\bf v} = {\bf \tilde{b}}^*
+\]
+where * is meaning that the matrix in the algorithm now obtains a new value.
+
+In our case we have a very special tridiagonal matrix ${\bf A}$, so we only need two operations to get the identity matrix. 
+
+We start by the forward substitution which removes the elements below the diagonal from the second comumn and down to the n-th row. The algorithm is as follows:
+\begin{align*}
+b_i^* &= b_i - \frac{a_i c_{i-1}}{b_{i-1}}\\
+\tilde{b}_i^* &= \tilde{b}_i - \frac{a_i}{b_{i-1}}\tilde{b}_{i-1}, \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=2,\dots,n
+\end{align*}
+
+We can also rewrite $a_i = a = -1$ and $c_i = c = -1$ for all $i$ to reduce the number of floating point operations:
+\begin{align*}
+b_i^* &= b_i - \frac{1}{b_{i-1}}\\
+\tilde{b}_i^* &= \tilde{b}_i + \frac{\tilde{b}_{i-1}}{b_{i-1}}
+\end{align*}
+
+The backward substitution then removes all the elements above the diagonal from the next bottom row (n-1) of the matrix and up to row number one.
+\begin{align*}
+\tilde{b}_{i-1}^* &= \tilde{b}_{i-1} - \frac{\tilde{b}_{i}}{b_{i}}, \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=n,\dots,2
+\end{align*}
+where $c= -1$ as above. This iteration does not affect the $b_i$ since elements under the diagonal, $a_i^*$, is zero after the forward substitution. 
+
+Finally we normalize the left hand side to one to obtain the identity matrix, meaning that the right hand side is:
+\[
+\tilde{b}_i^{**} = \frac{\tilde{b}_i^*}{b_i}
+\]
+so that the solution of the set of equations is $v_i = \tilde{b}_i^{**}$. 
+
+Then the precice number of floating point operations needed to solve this set of equations is seven times the number of rows the algorithm iterates over which is n-1. 
+
+\subsection{LU Decomposition}
+To solve the equations by LU decomposition we use the Armadillo library functions \texttt{lu(L,U,A)} and \texttt{solve(A,B)} with the simple code:
+\begin{lstlisting}
+    lu(L,U,A);
+    vec y = solve(L,b_thilde);
+    vec v = solve(U,y);
+\end{lstlisting}
+
+
+Find also the precise number of floating point 
+operations needed to solve the above equations. ?!?
+
+\subsection{Relative error}
+The relative error in the data set in relation to the analytical solution can be computed by 
+\[
+   \epsilon_i=log_{10}\left(\left|\frac{v_i-u_i}
+                 {u_i}\right|\right),
+\]
+where $\epsilon_i$ is the relative error for each corresponding value of $x_i$ where $i=1,\dots, n$. 
+
+It can be shown that the relative error is constant over the whole data set (for one $n$). We will therefor choose the relative error for each $n$, $\epsilon$ to be the mean of the relative error for the whole dataset, $\epsilon_i$
+\[
+\epsilon = \frac{\epsilon_1 + \epsilon_2 + \dots + \epsilon_n}{n}
+\]
+We will let n be an element of $N = [10^1, 10^2, \dots, 10^5]$ plot the relative error for all the different $n$-values as a function of $log_{10}(h)$ 
+
+
+%%Make a table of the results and comment your results. 
+
+
+\subsection{Calculating execution time}
+
+To compute the elapsed time in c++ you can use the following statements
+\begin{lstlisting}[title={Time in C++}]
+using namespace std;
+...
+#include "time.h"   //  you have to include the time.h header
+int main()
+{
+    // declarations of variables 
+    ...
+    clock_t start, finish;  //  declare start and final time
+    start = clock();
+    // your code is here, do something and then get final time
+    finish = clock();
+    ( (finish - start)/CLOCKS_PER_SEC );
+...
+\end{lstlisting}
+
 
 
 
@@ -244,7 +327,7 @@ interval $x\in(0,1)$.  The different number of grid points corresponds to differ
 
 sdkjcfnwif
 \rule{\textwidth}{1pt}
-\item[(c)]
+
 
 Compute the relative error  in the data set $i=1,\dots, n$,by setting up 
 \[
@@ -256,7 +339,6 @@ For each step length extract the max value of the relative error.
 Try to increase $n$ to $n=10000$ and $n=10^5$.  Make a table of the results and 
 comment your results. 
 
-\item[(d)]
 Compare your results with those from the LU decomposition codes for the matrix of sizes $10\times 10$, $100\times 100$ and
 $1000\times 1000$. Here you should use the library functions provided  on the webpage of the course. Alternatively, if you use armadillo as a library, you can use the similar function for LU decomposition.  The armadillo function for the LU decomposition is called $LU$ while the function for solving linear sets of equations is called $solve$.
 Use for example the unix function {\em time} when you run your codes 
@@ -287,29 +369,8 @@ int main()
     ( (finish - start)/CLOCKS_PER_SEC );
 ...
 \end{lstlisting}
-Similarly, in Fortran, this simple example shows how to compute the elapsed time.
-\lstset{language=[90]Fortran}
-\begin{lstlisting}[title={Time in Fortran}]
-PROGRAM time
- REAL :: etime          ! Declare the type of etime()
- REAL :: elapsed(2)     ! For receiving user and system time
- REAL :: total          ! For receiving total time
- INTEGER :: i, j
 
- WRITE(*,*) 'Start'
 
- DO i = 1, 5000000  
-      j = j + 1
- ENDDO
-
- total = ETIME(elapsed)
- WRITE(*,*) 'End: total=', total, ' user=', elapsed(1), &
-              ' system=', elapsed(2)
-
-END PROGRAM time
-\end{lstlisting}
-
-\end{enumerate}
 
 -----------------------------------------------
 
