@@ -100,6 +100,12 @@ int main(int argc, char *argv[])
         mat A = zeros<mat>(n,n);
         mat L = zeros<mat>(n,n);
         mat U = zeros<mat>(n,n);
+        //b_thilde.print();
+        //cout << "----" << endl;
+        b_thilde.shed_row(0);
+        b_thilde.shed_row(n);
+        //b_thilde.print();
+        //size(b_thilde).print();
         for(int i=0, j=1; (i<=n-1) && (j<=n-1); ++i, ++j)
         {
             A(i,j) = c;
@@ -107,18 +113,18 @@ int main(int argc, char *argv[])
             A(j,i) = a;
         }
         A(n-1,n-1) = b[n];
-        //cout << "A:" << endl;
-        //size(b_thilde).print();
 
         //clocking the operations (only solve, not making file):
         clock_t start_lu, finish_lu; //declaring start and finish time
         start_lu = clock();
 
         lu(L,U,A);
-        L.print();
-        U.print();
+        //size(L).print();
 
-        //X = solve(A,B)
+
+        vec y = solve(L,b_thilde);
+        size(y).print();
+
 
         //stopping timer:
         finish_lu = clock();
