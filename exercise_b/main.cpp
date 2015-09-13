@@ -96,7 +96,16 @@ int main(int argc, char *argv[])
         //Using the armadillo library with LU decomposition to solve the equations:
         vec a = -1.*ones<vec>(n+2); //two extra values on each side
         vec c = -1.*ones<vec>(n+2);
-        mat A = mat(n, n, fill:zeros)
+        mat A = zeros<mat>(n,n);
+        for(int i = 0; i>=n; ++i)
+        {
+            for(int j=0; j>=n-1; ++j)
+            {
+                A(i,j) = c[j];
+                A(i,i) = b[i+1];
+                A(j,i) = a[j+1];
+        }
+        }
 
         //clocking the operations (only solve, not making file):
         clock_t start_lu, finish_lu; //declaring start and finish time
