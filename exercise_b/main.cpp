@@ -23,7 +23,7 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
         string filename = "linear_eq_solution_" + FileName + "_n" + to_string(n) + ".txt";
         myfile.open (filename);
         myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
-        myfile << "Time calculating: " << time_diag << " " << " seconds" << endl;
+        myfile << "Time calculating with substitution: " << time_diag << " " << " seconds" << endl;
         myfile << "---------------------" << endl;
         for (int i=1; i<n+1; i++)
         {
@@ -91,39 +91,42 @@ int main(int argc, char *argv[])
         /*Solving equations by forward/backward substitution:
          * (b, b_thilde, x and n not changed in main() so they can be
          * used for next method) */
-        Forward_Bckward_Substitution(b, b_thilde, x, n);
+        //Forward_Bckward_Substitution(b, b_thilde, x, n);
 
         //Using the armadillo library with LU decomposition to solve the equations:
-        vec a = -1.*ones<vec>(n+2); //two extra values on each side
-        vec c = -1.*ones<vec>(n+2);
+        int a = -1.;
+        int c = -1.;
+        //creating A, L, U
         mat A = zeros<mat>(n,n);
-        for(int i = 0; i>=n; ++i)
+        mat L = zeros<mat>(n,n);
+        mat U = zeros<mat>(n,n);
+        for(int i=0, j=1; (i<=n-1) && (j<=n-1); ++i, ++j)
         {
-            for(int j=0; j>=n-1; ++j)
-            {
-                A(i,j) = c[j];
-                A(i,i) = b[i+1];
-                A(j,i) = a[j+1];
+            A(i,j) = c;
+            A(i,i) = b[i+1];
+            A(j,i) = a;
         }
-        }
-        A.print();
-        cout << A << endl;
+        A(n-1,n-1) = b[n];
+        //cout << "A:" << endl;
+        //size(b_thilde).print();
 
         //clocking the operations (only solve, not making file):
         clock_t start_lu, finish_lu; //declaring start and finish time
         start_lu = clock();
 
-//do something here
-        //lu(L,U,X)
+        lu(L,U,A);
+        L.print();
+        U.print();
+
         //X = solve(A,B)
 
         //stopping timer:
         finish_lu = clock();
         double time_lu = ( (finish_lu - start_lu)/((double)CLOCKS_PER_SEC ) );
-        cout << "Time for n=" << n << ":  " << time_lu << "seconds" << endl;
+        cout << "Time for LU solve with n=" << n << ":  " << time_lu << "seconds" << endl;
 
         //Sending the vectors to file:
-        MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
+        //MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
     }
 
     return 0;
