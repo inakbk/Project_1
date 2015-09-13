@@ -20,7 +20,7 @@ vec f(vec x) //call by f(x[i])
 void MakePlotFile(const vec x, const vec solution, const int n, const double time_diag, string FileName)
 {
     ofstream myfile;
-        string filename = "linear_eq_" + FileName + "_n" + to_string(n) + ".txt";
+        string filename = "linear_eq_solution_" + FileName + "_n" + to_string(n) + ".txt";
         myfile.open (filename);
         myfile << "Data:" << "  "<< "x" << "     " << "Solution" << endl;
         myfile << "Time calculating: " << time_diag << " " << " seconds" << endl;
@@ -33,7 +33,7 @@ void MakePlotFile(const vec x, const vec solution, const int n, const double tim
         cout << "Datafile done for n=" << n << endl;
 }
 
-void F_B_Substitution(vec b, vec b_thilde, const vec x, const int n)
+void Forward_Bckward_Substitution(vec b, vec b_thilde, const vec x, const int n)
 {
     //clocking the operations (only solve, not making file):
     clock_t start_diag, finish_diag; //declaring start and finish time
@@ -62,7 +62,7 @@ void F_B_Substitution(vec b, vec b_thilde, const vec x, const int n)
     cout << "Time for n=" << n << ":  " << time_diag << "seconds" << endl;
 
     //Sending the vectors to file:
-    MakePlotFile(x, v, n, time_diag, "solution_reduced"); //making plot file
+    MakePlotFile(x, v, n, time_diag, "reduced"); //making plot file
 }
 
 
@@ -88,14 +88,31 @@ int main(int argc, char *argv[])
         vec x = linspace<vec>(0, 1, n+2);
         vec b_thilde = h*h*f(x);
 
-        //b, b_thilde, x and n not changed in main() so they can be used for next method
-        F_B_Substitution(b, b_thilde, x, n);
+        /*Solving equations by forward/backward substitution:
+         * (b, b_thilde, x and n not changed in main() so they can be
+         * used for next method) */
+        Forward_Bckward_Substitution(b, b_thilde, x, n);
 
         //Using the armadillo library with LU decomposition to solve the equations:
-//do something here that you time here
+        vec a = -1.*ones<vec>(n+2); //two extra values on each side
+        vec c = -1.*ones<vec>(n+2);
+        mat A = mat(n, n, fill:zeros)
+
+        //clocking the operations (only solve, not making file):
+        clock_t start_lu, finish_lu; //declaring start and finish time
+        start_lu = clock();
+
+//do something here
         //lu(L,U,X)
         //X = solve(A,B)
 
+        //stopping timer:
+        finish_lu = clock();
+        double time_lu = ( (finish_lu - start_lu)/((double)CLOCKS_PER_SEC ) );
+        cout << "Time for n=" << n << ":  " << time_lu << "seconds" << endl;
+
+        //Sending the vectors to file:
+        MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
     }
 
     return 0;
