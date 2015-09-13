@@ -106,6 +106,8 @@ int main(int argc, char *argv[])
                 A(j,i) = a[j+1];
         }
         }
+        A.print();
+        cout << A << endl;
 
         //clocking the operations (only solve, not making file):
         clock_t start_lu, finish_lu; //declaring start and finish time
