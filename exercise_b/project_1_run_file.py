@@ -19,8 +19,8 @@ def read_file(filename):
 		if len(line.split()) == 2:
 			x.append(float(line.split()[0]))
 			v.append(float(line.split()[1]))
-		if len(line.split()) == 4:
-			time_diag = float(line.split()[2])
+		if len(line.split()) >= 4:
+			time_diag = float(line.split()[4])
     infile.close()
 
     return array(x), array(v), time_diag
