@@ -36,6 +36,7 @@ def u(x):
 N = [10, 100, 1000]#, 10**4, 10**5]#, 10**6, 10**7, 10**8]
 h = zeros(len(N))
 relative_error = zeros(len(N))
+relative_error_lu = zeros(len(N))
 i = 1
 
 for n in N:
@@ -48,28 +49,32 @@ for n in N:
 	"""
 	Fetching file from c++ code
 	"""
-	filename = 'linear_eq_solution_reduced_n%s.txt' %n
+	filename_subst = 'linear_eq_solution_reduced_n%s.txt' %n
+	filename_lu = '/Users/Ina/build/build-exercise_d-Desktop_Qt_5_5_0_clang_64bit-Debug/linear_eq_solution_lu_n%s.txt' %n
 
-	x, v, time_diag = read_file(filename)
+	x, v, time_diag = read_file(filename_subst)
+	x_lu, v_lu, time_lu = read_file(filename_lu)
+	print v_lu
 
 	figure(i)
 	plot(x,v, 'b')
 	hold('on')
+	plot(x_lu,v_lu, 'g')
 	plot(x,u(x), 'r')
-	legend(['Numerical', 'Analytic'], loc='lower left')
+	legend(['Numerical subst.','Numerical lu dec.', 'Analytic'], loc='lower left')
 	xlabel('x')
 	ylabel('Solution')
-	title('Plot of analytic and numerical solution with n=%s \nTime spent on num. calculation: %s' %(n, time_diag)) 
-	savefig('linear_eq_solution_plot_reduced_n%s.eps' %n)
+	title('Plot of analytic and numerical solutions with n=%s \nTime spent on num. calculation: %s for subst. and %s for lu dec.' %(n, time_diag, time_lu)) 
+	savefig('linear_eq_solution_plot_all_num_n%s.eps' %n)
 	hold('off')
 
-	#show()
 	"""
 	------------------------------------------------------------------------------------------
 	Exercise c
 	"""
 
 	relative_error[i-1] = mean(log10(abs((v - u(x))/u(x)))) #extraxting rel. error for each n
+	relative_error_lu[i-1] = mean(log10(abs((v_lu - u(x))/u(x)))) 
 #	print relative_error[i-1]
 	"""
 	#error for one n:
@@ -84,11 +89,13 @@ for n in N:
 
 figure(12)
 plot(log10(h), relative_error, 'ko-')
-legend(['Relative error'], loc='lower left')
+hold('on')
+plot(log10(h), relative_error_lu, 'ko-')
+legend(['Relative error subst.', 'Relative error lu dec.'], loc='lower left')
 xlabel('$log_{10}(h)$', fontsize=18)
 ylabel('Relative error', fontsize=18)
-title('Plot of relative error with n=%s' %N) 
-savefig('linear_eq_error_plot_reduced_N%s.eps' %N[-1])
+title('Plot of relative error for both numerical methods with n=%s' %N) 
+savefig('linear_eq_error_plot_all_num_N%s.eps' %N[-1])
 
 
 show()
