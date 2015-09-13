@@ -16,3 +16,15 @@
 *.eps
 
 *.eps
+
+*.aux
+
+*.out
+
+*.aux
+
+*.log
+
+*.pdf
+
+*.gz
