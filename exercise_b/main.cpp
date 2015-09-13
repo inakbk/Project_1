@@ -66,6 +66,7 @@ void Forward_Backward_Substitution(vec b, vec b_thilde, const vec x, const int n
     //v.print();
 }
 
+/*
 void solve_lu(vec b, vec b_thilde, const vec x, const int n)
 {
     int a = -1.;
@@ -103,7 +104,7 @@ void solve_lu(vec b, vec b_thilde, const vec x, const int n)
     //Sending the vectors to file:
     MakePlotFile(x, v, n, time_lu, "lu"); //making plot file
 }
-
+*/
 
 int main(int argc, char *argv[])
 {
@@ -134,7 +135,7 @@ int main(int argc, char *argv[])
         //cout << "-----" << endl;
 
         //Using the armadillo library with LU decomposition to solve the equations:
-        solve_lu(b, b_thilde, x, n);
+        //solve_lu(b, b_thilde, x, n);
 
     }
 
