@@ -34,6 +34,9 @@
 
 \maketitle
 
+{\scriptsize \noindent All source codes can be found at: \texttt{https://github.com/inakbk/Project\_1.git} in the folders \texttt{exercise\_b} and \texttt{exercise\_d}. }
+
+
 \begin{abstract}
 The goal for this project is to solve the general one-dimentional Poisson equation with two different numerical methods and compare with the exact analythical solution. For each numerical method the relative error, execution time and number of floating point operations is calculated.
 
@@ -43,11 +46,13 @@ The two numerical methods used to solve the equations is forward/backward substi
 
 \end{abstract}
 
+
+
 \section{Introduction: Motivation and Purpose}
 
 %Using text from exercise where it is natural
 
-Many important differential equations in the Sciences can be written as linear second-order differential equations 
+Many important differential equations in the Sciences can be written as linear second-order differential equations \footnote{Very much of the text in this section and some of the other sections is copy or moderated text from the exercise text. I wrote this report to assume that the reader did not have the exercise text --> it then felt naturally to reuse some of the text when the .tex file was given. OK, not OK?}
 \[
 \frac{d^2y}{dx^2}+k^2(x)y = f(x),
 \]
@@ -214,15 +219,12 @@ to find ${\bf y}$. Then further use the now known ${\bf y}$ to find ${\bf v}$ by
 
 
 \section{Algorithm}
+All source codes can be found at: \texttt{https://github.com/inakbk/Project\_1.git} in the folders \texttt{exercise\_b} and \texttt{exercise\_d}. 
 
 The algorithms are structured into two \texttt{c++} programs and one \texttt{python} program. Each of the \texttt{c++} programs solves the equations for an nxn matrix, one with the algorithm for forward/backward substitution and the other with the algorithm for LU decomposition. Both algorithms are described below. After solving the equations the result vector $v$ is written to a \texttt{.txt} file along with the $x$ value and execution time. The value of n is given on the command line so that the program is executed one time for each n. 
 
 The python program compiles and runs the \texttt{c++} program\footnote{The aim was to only have one \texttt{c++} progam, but when I tried running the \texttt{c++} code with the LU decomposition from the python script i got a compilation error. The same compilation error came when running from the terminal, but not from QT creator. So with little time to finish the project i fixed the problem by running the LU decomposition from QT Creator before running the python script. } so that the \texttt{.txt} files are given, loads and plots the data along with the analytical solution and computes and plots the relative error. 
 
-
-
-
-%%explaining main structure
 
 \subsection{Forward and Backward substitution}
 The purpose of the forward and backward substitution is to make row operations on both left/right hand side of the equation so that at the left hand side eventually is left with the identity matrix times the unknown vector, ${\bf A} \rightarrow {\bf A}^* \rightarrow {\bf I}$ and ${\bf \tilde{b}} \rightarrow {\bf \tilde{b}}^*$ so the solution is then the altered left hand side:
@@ -271,6 +273,9 @@ To solve the equations by LU decomposition we use the Armadillo library function
 Find also the precise number of floating point 
 operations needed to solve the above equations. ?!?
 
+How many floating point operations does the LU decomposition use to solve the set of linear equations?
+
+
 \subsection{Relative error}
 The relative error in the data set in relation to the analytical solution can be computed by 
 \[
@@ -290,8 +295,7 @@ We will let n be an element of $N = [10^1, 10^2, \dots, 10^5]$ plot the relative
 
 
 \subsection{Calculating execution time}
-
-To compute the elapsed time in c++ you can use the following statements
+To compute the execution time in \texttt{c++} the following statements where used:
 \begin{lstlisting}[title={Time in C++}]
 using namespace std;
 ...
@@ -308,71 +312,51 @@ int main()
 ...
 \end{lstlisting}
 
+The timing only enclosed the code which did the calculations, not the code which generated the arrays/matrixes neded to do the calculations or the code which wrote the data to file. 
 
-
-
-\rule{\textwidth}{1pt}
-\textbf{Exercise:}\\
-Your first task is to set up the algorithm for solving this set of linear equations.
-Find also the precise number of floating point 
-operations needed to solve the above equations. 
-Compare this with standard Gaussian elimination and LU decomposition.
-
-Then you should code the above algorithm and solve the problem for matrices of the size
-$10\times 10$, $100\times 100$ and $1000\times 1000$.  That means that you choose $n=10$, $n=100$ and
-$n=1000$ grid points. 
+\section{Results}
 
 Compare your results (make plots) with the closed-form solution for the different number of grid points  in the 
 interval $x\in(0,1)$.  The different number of grid points corresponds to different step lengths $h$.
 
-sdkjcfnwif
-\rule{\textwidth}{1pt}
-
-
-Compute the relative error  in the data set $i=1,\dots, n$,by setting up 
-\[
-   \epsilon_i=log_{10}\left(\left|\frac{v_i-u_i}
-                 {u_i}\right|\right),
-\]
-as function of $log_{10}(h)$ for the function values $u_i$ and $v_i$.
-For each step length extract the max value of the relative error.  
-Try to increase $n$ to $n=10000$ and $n=10^5$.  Make a table of the results and 
+Relative error: Make a table of the results and 
 comment your results. 
 
-Compare your results with those from the LU decomposition codes for the matrix of sizes $10\times 10$, $100\times 100$ and
-$1000\times 1000$. Here you should use the library functions provided  on the webpage of the course. Alternatively, if you use armadillo as a library, you can use the similar function for LU decomposition.  The armadillo function for the LU decomposition is called $LU$ while the function for solving linear sets of equations is called $solve$.
-Use for example the unix function {\em time} when you run your codes 
-and compare the time usage between LU decomposition and  your
-tridiagonal solver.   Alternatively, you can use the functions in C++, Fortran or Python that measure the time used. 
-
-Make a table of the results and comment the differences
+compare the time usage between LU decomposition and  your
+tridiagonal solver.   Make a table of the results and comment the differences
 in execution time
-How many floating point operations does the LU decomposition use to solve the set of linear equations?
+
 Can you run the standard LU decomposition
 for a matrix of the size $10^5\times 10^5$?
 Comment your results.
 
-
-To compute the elapsed time in c++ you can use the following statements
-\begin{lstlisting}[title={Time in C++}]
-using namespace std;
-...
-#include "time.h"   //  you have to include the time.h header
-int main()
-{
-    // declarations of variables 
-    ...
-    clock_t start, finish;  //  declare start and final time
-    start = clock();
-    // your code is here, do something and then get final time
-    finish = clock();
-    ( (finish - start)/CLOCKS_PER_SEC );
-...
-\end{lstlisting}
+Include your results either in figure form or in a table. Remember to
+       label your results. All tables and figures should have relevant captions
+       and labels on the axes.
+\section{Discussion}
 
 
+Try to evaluate the reliabilty and numerical stability/precision
+of your results. If possible, include a qualitative and/or quantitative
+discussion of the numerical stability, eventual loss of precision etc. 
 
------------------------------------------------
+Try to give an interpretation of you results in your answers to 
+the problems.
+
+Critique: if possible include your comments and reflections about the 
+exercise, whether you felt you learnt something, ideas for improvements and 
+other thoughts you've made when solving the exercise.
+We wish to keep this course at the interactive level and your comments can help
+us improve it.
+
+\section{div}
+
+
+
+
+
+
+
 
 \newpage
 \section*{ README before delivery:}
