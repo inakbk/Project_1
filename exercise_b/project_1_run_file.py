@@ -33,7 +33,7 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-N = [10, 100, 1000]#, 10**4, 10**5]#, 10**6, 10**7, 10**8]
+N = [10, 100, 1000, 10**4]#, 10**5]#, 10**6, 10**7, 10**8]
 h = zeros(len(N))
 relative_error = zeros(len(N))
 relative_error_lu = zeros(len(N))
@@ -54,8 +54,7 @@ for n in N:
 
 	x, v, time_diag = read_file(filename_subst)
 	x_lu, v_lu, time_lu = read_file(filename_lu)
-	print v_lu
-
+	
 	figure(i)
 	plot(x,v, 'b')
 	hold('on')
