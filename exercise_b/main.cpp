@@ -123,7 +123,9 @@ int main(int argc, char *argv[])
 
 
         vec y = solve(L,b_thilde);
-        size(y).print();
+        //size(y).print();
+        vec v = solve(U,y);
+        v.print();
 
 
         //stopping timer:
