@@ -36,7 +36,7 @@ def u(x):
 ------------------------------------------------------------------------------------------
 """
 
-N = [10, 100, 1000, 10**4]#, 10**5]#, 10**6, 10**7, 10**8]
+N = [10, 100, 1000, 10**4]#, 10**5]#, 10**6, 10**7, 10**8] #the highest n only works for the subst. method
 h = zeros(len(N))
 relative_error = zeros(len(N))
 relative_error_lu = zeros(len(N))
