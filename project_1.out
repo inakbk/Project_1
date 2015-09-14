@@ -1,5 +1,5 @@
-\BOOKMARK [1][-]{section.1}{Introduction: Motivation and Purpose}{}% 1
-\BOOKMARK [1][-]{section.2}{Theory: Rewriting the equation into a linear algebra problem}{}% 2
+\BOOKMARK [1][-]{section.1}{Motivation and purpose}{}% 1
+\BOOKMARK [1][-]{section.2}{Rewriting the equation into a linear algebra problem}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Forward and Backward substitution}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{LU Decomposition}{section.2}% 4
 \BOOKMARK [1][-]{section.3}{Algorithm}{}% 5

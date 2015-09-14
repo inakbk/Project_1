@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  14 SEP 2015 03:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  14 SEP 2015 03:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -460,20 +460,20 @@ _n10-eps-converted-to.pdf>
 (epstopdf)             Command: <repstopdf --outfile=exercise_b/linear_eq_solut
 ion_plot_all_num_n10-eps-converted-to.pdf exercise_b/linear_eq_solution_plot_al
 l_num_n10.eps>
-(epstopdf)             \includegraphics on input line 320.
+(epstopdf)             \includegraphics on input line 322.
 Package epstopdf Info: Output file is already uptodate.
 
-<exercise_b/linear_eq_solution_plot_all_num_n10-eps-converted-to.pdf, id=129, 5
+<exercise_b/linear_eq_solution_plot_all_num_n10-eps-converted-to.pdf, id=120, 5
 78.16pt x 433.62pt>
 File: exercise_b/linear_eq_solution_plot_all_num_n10-eps-converted-to.pdf Graph
 ic file (type pdf)
 
 <use exercise_b/linear_eq_solution_plot_all_num_n10-eps-converted-to.pdf>
 Package pdftex.def Info: exercise_b/linear_eq_solution_plot_all_num_n10-eps-con
-verted-to.pdf used on input line 320.
+verted-to.pdf used on input line 322.
 (pdftex.def)             Requested size: 240.90234pt x 180.67499pt.
 
-Overfull \hbox (19.57547pt too wide) in paragraph at lines 320--322
+Overfull \hbox (19.57547pt too wide) in paragraph at lines 322--324
  [][] 
  []
 
@@ -488,25 +488,25 @@ _n100-eps-converted-to.pdf>
 (epstopdf)             Command: <repstopdf --outfile=exercise_b/linear_eq_solut
 ion_plot_all_num_n100-eps-converted-to.pdf exercise_b/linear_eq_solution_plot_a
 ll_num_n100.eps>
-(epstopdf)             \includegraphics on input line 326.
+(epstopdf)             \includegraphics on input line 328.
 Package epstopdf Info: Output file is already uptodate.
 
-<exercise_b/linear_eq_solution_plot_all_num_n100-eps-converted-to.pdf, id=130, 
+<exercise_b/linear_eq_solution_plot_all_num_n100-eps-converted-to.pdf, id=121, 
 578.16pt x 433.62pt>
 File: exercise_b/linear_eq_solution_plot_all_num_n100-eps-converted-to.pdf Grap
 hic file (type pdf)
 
 <use exercise_b/linear_eq_solution_plot_all_num_n100-eps-converted-to.pdf>
 Package pdftex.def Info: exercise_b/linear_eq_solution_plot_all_num_n100-eps-co
-nverted-to.pdf used on input line 326.
+nverted-to.pdf used on input line 328.
 (pdftex.def)             Requested size: 240.90234pt x 180.67499pt.
 
-Overfull \hbox (19.57547pt too wide) in paragraph at lines 326--328
+Overfull \hbox (19.57547pt too wide) in paragraph at lines 328--330
  [][] 
  []
 
 
-Overfull \hbox (4.84323pt too wide) in paragraph at lines 318--330
+Overfull \hbox (4.84323pt too wide) in paragraph at lines 320--332
  [][]  [] 
  []
 
@@ -521,20 +521,20 @@ _n1000-eps-converted-to.pdf>
 (epstopdf)             Command: <repstopdf --outfile=exercise_b/linear_eq_solut
 ion_plot_all_num_n1000-eps-converted-to.pdf exercise_b/linear_eq_solution_plot_
 all_num_n1000.eps>
-(epstopdf)             \includegraphics on input line 337.
+(epstopdf)             \includegraphics on input line 339.
 Package epstopdf Info: Output file is already uptodate.
 
-<exercise_b/linear_eq_solution_plot_all_num_n1000-eps-converted-to.pdf, id=131,
+<exercise_b/linear_eq_solution_plot_all_num_n1000-eps-converted-to.pdf, id=122,
  578.16pt x 433.62pt>
 File: exercise_b/linear_eq_solution_plot_all_num_n1000-eps-converted-to.pdf Gra
 phic file (type pdf)
 
 <use exercise_b/linear_eq_solution_plot_all_num_n1000-eps-converted-to.pdf>
 Package pdftex.def Info: exercise_b/linear_eq_solution_plot_all_num_n1000-eps-c
-onverted-to.pdf used on input line 337.
+onverted-to.pdf used on input line 339.
 (pdftex.def)             Requested size: 240.90234pt x 180.67499pt.
 
-Overfull \hbox (19.57547pt too wide) in paragraph at lines 337--339
+Overfull \hbox (19.57547pt too wide) in paragraph at lines 339--341
  [][] 
  []
 
@@ -549,25 +549,25 @@ _n10000-eps-converted-to.pdf>
 (epstopdf)             Command: <repstopdf --outfile=exercise_b/linear_eq_solut
 ion_plot_all_num_n10000-eps-converted-to.pdf exercise_b/linear_eq_solution_plot
 _all_num_n10000.eps>
-(epstopdf)             \includegraphics on input line 343.
+(epstopdf)             \includegraphics on input line 345.
 Package epstopdf Info: Output file is already uptodate.
 
-<exercise_b/linear_eq_solution_plot_all_num_n10000-eps-converted-to.pdf, id=132
+<exercise_b/linear_eq_solution_plot_all_num_n10000-eps-converted-to.pdf, id=123
 , 578.16pt x 433.62pt>
 File: exercise_b/linear_eq_solution_plot_all_num_n10000-eps-converted-to.pdf Gr
 aphic file (type pdf)
 
 <use exercise_b/linear_eq_solution_plot_all_num_n10000-eps-converted-to.pdf>
 Package pdftex.def Info: exercise_b/linear_eq_solution_plot_all_num_n10000-eps-
-converted-to.pdf used on input line 343.
+converted-to.pdf used on input line 345.
 (pdftex.def)             Requested size: 240.90234pt x 180.67499pt.
 
-Overfull \hbox (19.57547pt too wide) in paragraph at lines 343--345
+Overfull \hbox (19.57547pt too wide) in paragraph at lines 345--347
  [][] 
  []
 
 
-Overfull \hbox (4.84323pt too wide) in paragraph at lines 335--347
+Overfull \hbox (4.84323pt too wide) in paragraph at lines 337--349
  [][]  [] 
  []
 
@@ -582,18 +582,23 @@ Package epstopdf Info: Source file: <exercise_b/linear_eq_time_plot_all_num_N10
 (epstopdf)             Command: <repstopdf --outfile=exercise_b/linear_eq_time_
 plot_all_num_N10000-eps-converted-to.pdf exercise_b/linear_eq_time_plot_all_num
 _N10000.eps>
-(epstopdf)             \includegraphics on input line 352.
+(epstopdf)             \includegraphics on input line 354.
 Package epstopdf Info: Output file is already uptodate.
 
-<exercise_b/linear_eq_time_plot_all_num_N10000-eps-converted-to.pdf, id=133, 57
+<exercise_b/linear_eq_time_plot_all_num_N10000-eps-converted-to.pdf, id=124, 57
 8.16pt x 433.62pt>
 File: exercise_b/linear_eq_time_plot_all_num_N10000-eps-converted-to.pdf Graphi
 c file (type pdf)
 
 <use exercise_b/linear_eq_time_plot_all_num_N10000-eps-converted-to.pdf>
 Package pdftex.def Info: exercise_b/linear_eq_time_plot_all_num_N10000-eps-conv
-erted-to.pdf used on input line 352.
+erted-to.pdf used on input line 354.
 (pdftex.def)             Requested size: 354.12434pt x 265.59291pt.
+
+[6] [7 <./exercise_b/linear_eq_solution_plot_all_num_n10-eps-converted-to.pdf> 
+<./exercise_b/linear_eq_solution_plot_all_num_n100-eps-converted-to.pdf> <./exe
+rcise_b/linear_eq_solution_plot_all_num_n1000-eps-converted-to.pdf> <./exercise
+_b/linear_eq_solution_plot_all_num_n10000-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <exercise_b/linear_eq_time_plot_all_num_N10
 0000000.eps>
 (epstopdf)                    date: 2015-09-14 01:40:58
@@ -605,30 +610,28 @@ Package epstopdf Info: Source file: <exercise_b/linear_eq_time_plot_all_num_N10
 (epstopdf)             Command: <repstopdf --outfile=exercise_b/linear_eq_time_
 plot_all_num_N100000000-eps-converted-to.pdf exercise_b/linear_eq_time_plot_all
 _num_N100000000.eps>
-(epstopdf)             \includegraphics on input line 363.
+(epstopdf)             \includegraphics on input line 365.
 Package epstopdf Info: Output file is already uptodate.
 
-<exercise_b/linear_eq_time_plot_all_num_N100000000-eps-converted-to.pdf, id=138
+<exercise_b/linear_eq_time_plot_all_num_N100000000-eps-converted-to.pdf, id=319
 , 578.16pt x 433.62pt>
 File: exercise_b/linear_eq_time_plot_all_num_N100000000-eps-converted-to.pdf Gr
 aphic file (type pdf)
 
 <use exercise_b/linear_eq_time_plot_all_num_N100000000-eps-converted-to.pdf>
 Package pdftex.def Info: exercise_b/linear_eq_time_plot_all_num_N100000000-eps-
-converted-to.pdf used on input line 363.
+converted-to.pdf used on input line 365.
 (pdftex.def)             Requested size: 354.12434pt x 265.59291pt.
 
-[6] [7 <./exercise_b/linear_eq_solution_plot_all_num_n10-eps-converted-to.pdf> 
-<./exercise_b/linear_eq_solution_plot_all_num_n100-eps-converted-to.pdf> <./exe
-rcise_b/linear_eq_solution_plot_all_num_n1000-eps-converted-to.pdf> <./exercise
-_b/linear_eq_solution_plot_all_num_n10000-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 378.
- [8 <./exercise_b/linear_eq_time_plot_all_num_N10000-eps-converted-to.pdf>] [9 
-<./exercise_b/linear_eq_time_plot_all_num_N100000000-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 378.
- (./project_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 378.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 378.
+[8 <./exercise_b/linear_eq_time_plot_all_num_N10000-eps-converted-to.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 380.
+
+[9 <./exercise_b/linear_eq_time_plot_all_num_N100000000-eps-converted-to.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 380.
+
+(./project_1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 380.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 380.
 
 
 Package rerunfilecheck Warning: File `project_1.out' has changed.
@@ -636,50 +639,50 @@ Package rerunfilecheck Warning: File `project_1.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `project_1.out':
-(rerunfilecheck)             Before: 9EE78FDF6C232E6FE72C26FE95302405;786
-(rerunfilecheck)             After:  1096D4340E4F534E4B78625F16CA2FC9;747.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 378.
+(rerunfilecheck)             Before: 057E5B87373037E2167EC4C30AD81893;725
+(rerunfilecheck)             After:  24FE665A87FE91D3044237F69E62B5C2;725.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 380.
  ) 
 Here is how much of TeX's memory you used:
- 9237 strings out of 493117
- 137664 string characters out of 6135433
- 291722 words of memory out of 5000000
- 12493 multiletter control sequences out of 15000+600000
- 26417 words of font info for 76 fonts, out of 8000000 for 9000
+ 9239 strings out of 493117
+ 137693 string characters out of 6135433
+ 302722 words of memory out of 5000000
+ 12494 multiletter control sequences out of 15000+600000
+ 27963 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,58p,866b,1294s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section.6} has been referenced but does not exist
-, replaced by a fixed one
-
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
-ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2
-014/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/201
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
+/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/201
 4/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2014/
 texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/te
 xmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2014/texm
 f-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2014/texmf-
 dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2014/texmf-di
 st/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist
-/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2014/texmf-dist/f
-onts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fonts
-/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
-ype1/public/cm-super/sftt1000.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
-e1/public/cm-super/sftt1095.pfb>
-Output written on project_1.pdf (9 pages, 524277 bytes).
+/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2014/texmf-dist/f
+onts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fon
+ts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts
+/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
+ype1/public/cm-super/sftt1095.pfb>
+Output written on project_1.pdf (9 pages, 520588 bytes).
 PDF statistics:
- 502 PDF objects out of 1000 (max. 8388607)
- 249 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 496 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
 

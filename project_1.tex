@@ -30,7 +30,7 @@
 \lstset{showtabs=false}
 \lstset{breaklines}
 
-\title{Project 1, FYS-3150}
+\title{{\Huge {\bf Project 1, FYS-3150}}}
 \author{Ina K. B. Kullmann}
 \date{\today}
 \begin{document}
@@ -42,6 +42,9 @@
 {\scriptsize \noindent All source codes can be found at: \texttt{https://github.com/inakbk/Project\_1.git} in the folders \texttt{exercise\_b} and \texttt{exercise\_d}. }
 
 
+
+\newpage
+
 \begin{abstract}
 The goal for this project is to solve the general one-dimentional Poisson equation with two different numerical methods and compare with the exact analythical solution. For each numerical method the relative error, execution time and number of floating point operations is calculated.
 
@@ -51,8 +54,7 @@ We will see that the execution time and relative error varies for the two method
 \end{abstract}
 
 
-\newpage
-\section{Introduction: Motivation and Purpose}
+\section{Motivation and purpose}
 
 Many important differential equations in the Sciences can be written as linear second-order differential equations \footnote{Very much of the text in this section and some of the other sections is copy or moderated text from the exercise text. I wrote this report to assume that the reader did not have the exercise text --> it then felt naturally to reuse some of the text when the .tex file was given. OK, not OK?}
 \[
@@ -82,7 +84,7 @@ where the inhomogeneous term $f$ (or source term) is given by the charge distrib
 
 In this project the general equation \ref{eq:Poisson} is the equation of interest that will be solved numerically. The purpose of this is to shed light on how to best solve simple linear second-order differential equations in Physics numerically by using forward/backward substitution and LU-decomposition. 
 
-\section{Theory: Rewriting the equation into a linear algebra problem}
+\section{Rewriting the equation into a linear algebra problem}
 To solve equation \ref{eq:Poisson} we will use Dirichlet boundary conditions and rewrite the equation as a set of linear equations.
 
 In specific we will solve:

@@ -1,11 +1,11 @@
-\contentsline {section}{\numberline {1}Introduction: Motivation and Purpose}{2}{section.1}
-\contentsline {section}{\numberline {2}Theory: Rewriting the equation into a linear algebra problem}{2}{section.2}
-\contentsline {subsection}{\numberline {2.1}Forward and Backward substitution}{3}{subsection.2.1}
+\contentsline {section}{\numberline {1}Motivation and purpose}{2}{section.1}
+\contentsline {section}{\numberline {2}Rewriting the equation into a linear algebra problem}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Forward and Backward substitution}{4}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}LU Decomposition}{4}{subsection.2.2}
 \contentsline {section}{\numberline {3}Algorithm}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Forward and Backward substitution}{4}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}LU Decomposition}{5}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Relative error}{5}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.1}Forward and Backward substitution}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}LU Decomposition}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Relative error}{6}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Calculating execution time}{6}{subsection.3.4}
 \contentsline {section}{\numberline {4}Results}{6}{section.4}
-\contentsline {section}{\numberline {5}Discussion and experiences}{7}{section.5}
+\contentsline {section}{\numberline {5}Discussion and experiences}{8}{section.5}
