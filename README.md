@@ -8,7 +8,7 @@ exercise_b/project_1_run_file.py
 exercise_d/main.cpp
 
 All relevant  plots that are also included in the PDF file is in the folder:
-
+eh cant find it because git now ignores all txt and eps files and i dont know how to reset...ask if needed
 
 
 
