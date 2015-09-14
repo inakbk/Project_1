@@ -37,6 +37,8 @@
 
 \maketitle
 
+\tableofcontents
+
 {\scriptsize \noindent All source codes can be found at: \texttt{https://github.com/inakbk/Project\_1.git} in the folders \texttt{exercise\_b} and \texttt{exercise\_d}. }
 
 
@@ -45,15 +47,12 @@ The goal for this project is to solve the general one-dimentional Poisson equati
 
 The two numerical methods used to solve the equations is forward/backward substitution and LU-decomposition. Both methods are using linear algebra to turn the problem into a set of many linear equations which can be represented by matrixes. 
 
-%floating point op.?? for lu
-
+We will see that the execution time and relative error varies for the two methods and that increasing n gives smaller error up to a point. 
 \end{abstract}
 
 
-
+\newpage
 \section{Introduction: Motivation and Purpose}
-
-%Using text from exercise where it is natural
 
 Many important differential equations in the Sciences can be written as linear second-order differential equations \footnote{Very much of the text in this section and some of the other sections is copy or moderated text from the exercise text. I wrote this report to assume that the reader did not have the exercise text --> it then felt naturally to reuse some of the text when the .tex file was given. OK, not OK?}
 \[
@@ -198,8 +197,6 @@ A tridiagonal matrix is a special form of banded matrix where all the elements a
 \end{equation}
 The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition and forward substitution and a backward substitution. 
 
-%% specific algorithm goes here!! (or in different subsec.)
-
 \subsection{LU Decomposition}
 The LU decomposition method means that we can decompose the matrix ${\bf A}$ as the product of two matrices ${\bf L}$ and ${\bf U}$:
 \[
@@ -273,10 +270,10 @@ To solve the equations by LU decomposition we use the Armadillo library function
 \end{lstlisting}
 
 
-Find also the precise number of floating point 
-operations needed to solve the above equations. ?!?
+%Find also the precise number of floating point 
+%operations needed to solve the above equations. ?!?
 
-How many floating point operations does the LU decomposition use to solve the set of linear equations?
+%How many floating point operations does the LU decomposition use to solve the set of linear equations?
 
 
 \subsection{Relative error}
@@ -292,10 +289,6 @@ It can be shown that the relative error is constant over the whole data set (for
 \epsilon = \frac{\epsilon_1 + \epsilon_2 + \dots + \epsilon_n}{n}
 \]
 We will let n be an element of $N = [10^1, 10^2, \dots, 10^5]$ plot the relative error for all the different $n$-values as a function of $log_{10}(h)$ 
-
-
-%%Make a table of the results and comment your results. 
-
 
 \subsection{Calculating execution time}
 To compute the execution time in \texttt{c++} the following statements where used:
@@ -321,6 +314,7 @@ The timing only enclosed the code which did the calculations, not the code which
 
 \begin{figure*}[ht!]
     \centering
+     \caption{Plots of the numerical and analytical solutions for $n=10, 100$.}
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n10.eps}
@@ -332,12 +326,12 @@ The timing only enclosed the code which did the calculations, not the code which
         \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n100.eps}
         %\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
     \end{subfigure}
-    \caption{Plots of the numerical and analytical solutions for $n=10, 100$.}
-    \label{fig:n_small}
+   \label{fig:n_small}
 \end{figure*}
 
 \begin{figure*}[ht!]
     \centering
+    \caption{Plots of the numerical and analytical solutions for $n=10^3, 10^4$.}
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n1000.eps}
@@ -349,7 +343,6 @@ The timing only enclosed the code which did the calculations, not the code which
         \includegraphics[height=2.5in]{exercise_b/linear_eq_solution_plot_all_num_n10000.eps}
         %\caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
     \end{subfigure}
-    \caption{Plots of the numerical and analytical solutions for $n=10^3, 10^4$.}
     \label{fig:n_big}
 \end{figure*}
 
@@ -362,7 +355,7 @@ The timing only enclosed the code which did the calculations, not the code which
 
 In figures \ref{fig:n_small} and \ref{fig:n_big} we see the two numerical methods plotted together with the analytical solution for n in $N = [10^1, 10^2, 10^3, 10^4]$. The backward/forward substitution method (blue) is clearly closest to the analytical solution (red) for low n. For bigger n the LU decomposition method lookes just as good as the substitution method with 'by eye' estimates. In figure \ref{fig:error} we see that the relative error for the two methods is reduced for bigger n (smaller h), but the error is clearly smallest for the substitution method for all n. For $n=10^4$ the error is about a factor $\approx10^3$ smaller for the substitution method than the LU decomposition method. We also see that the execution time is smaller for the substitution method, as much as by a factor $\approx10^6$ for $n=10^4$!
 
-The LU decomposition method did not work for $n>10^4$, then the program crashed, but the substitution method did not crash. For fun the last plot of this is in figure \ref{fig:tull} we see the errors and execution time for $N = [10^1, \dots, 10^8]$ for the substitution method and $N = [10^1, 10^2, 10^3, 10^4]$ for the LU decomposition method. 
+The LU decomposition method did not work for $n>10^4$, then the program crashed, but the substitution method did not crash. For fun the last plot of this is in figure \ref{fig:tull} we see the errors and execution time for $N = [10^1, \dots, 10^8]$ for the substitution method and $N = [10^1, 10^2, 10^3, 10^4]$ for the LU decomposition method. We see that the relative error gets smaller and smaller untill $n=10^6$ where it rises to the roof and stays there for higher n. But we can also see that the execution time does not rise rapidly at $n=10^6$, but increases evenly. The execution time for $n=10^8$ for the substitution method is still less than the execution time for $n=10^4$ for the LU decomposition method. 
 
 \begin{figure}[htp]
 \caption{Plots of the relative error and execution time for ridiculous large n.}
@@ -371,24 +364,16 @@ The LU decomposition method did not work for $n>10^4$, then the program crashed,
 \label{fig:tull}
 \end{figure}
 
-%%figure
-
 %Include your results either in figure form or in a table. Remember to label your results. All tables and figures should have relevant captions and labels on the axes.
-\section{Discussion}
+\section{Discussion and experiences}
 
+We have seen that the forward/backward substitution method gives both less relative error and smaller execution time than the LU decomposition method from the Armadillo library. This is as expected because the substitution method is exploiting the very special tridiagonal form of the matrix ${\bf A}$. The LU decomposition algorithm must be much more general to solve all kinds of sets of equations. This generality is nice because one would not have to do so much analytical work befor solving the equations, but is lead to more round-off/owerflow errors which gives loss of precition and also a longer execution time. The factor of $\approx10^6$ longer execution time for the LU decomposition method for $n=10^4$ is a lot more than I expected! 
 
-Try to evaluate the reliabilty and numerical stability/precision
-of your results. If possible, include a qualitative and/or quantitative
-discussion of the numerical stability, eventual loss of precision etc. 
+It was interesting to see that the LU decomposition method did not work for $n>10^4$, I did not expect that. But I did expect the relative error to increase after a point for very large n. It was impressive to see that the execution time for large n did not increase drasticaly as the relative error did. As mentioned the LU decomposition method cannot be uset for large matrixes, but I would aviod using it anyway for matrixes where other possible smart methods can be used, unless loss of precition and execution time is not important. Another point is that iIt is always smart to do some analytical work to check if the results are making sense, as for the substitution method in this project. 
 
-Try to give an interpretation of you results in your answers to 
-the problems.
+Unfortunately I did not have time to try to implement the \texttt{new} and \texttt{delete} commands for dynamically memory allocation, I am using c++ for the first time. But I did construct the program such that the vectors and matrixes scaled up/down for the different n. 
 
-Critique: if possible include your comments and reflections about the 
-exercise, whether you felt you learnt something, ideas for improvements and 
-other thoughts you've made when solving the exercise.
-We wish to keep this course at the interactive level and your comments can help
-us improve it.
+But it was nice to repeat some linear algebra and imlement the methods to solve huge systems of differential exuations in Physics.
 
 \section{div}
 
